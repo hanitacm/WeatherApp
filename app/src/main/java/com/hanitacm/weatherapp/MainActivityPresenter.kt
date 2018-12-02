@@ -1,8 +1,10 @@
 package com.hanitacm.weatherapp
 
-class MainActivityPresenter {
-  fun getWeatherSync() {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-  }
+class MainActivityPresenter(private val getWeatherUseCase: GetWeatherUseCase) {
 
+  fun getWeatherSync(location: String) {
+
+    if (!location.isBlank())
+      getWeatherUseCase.getWeather(location)
+  }
 }
