@@ -6,14 +6,14 @@ import kotlinx.android.synthetic.main.activity_main.sync
 
 class MainActivity : AppCompatActivity() {
 
-  private lateinit var presenter: mainActivityPresenter
+  private lateinit var presenter: MainActivityPresenter
 
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
 
-    presenter = mainActivityPresenter()
+    presenter = MainActivityPresenter()
     sync.setOnClickListener { presenter.getWeatherSync() }
   }
 
