@@ -5,6 +5,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.mockito.ArgumentMatchers.anyString
 import org.mockito.Mock
+import org.mockito.Mockito.verify
 import org.mockito.Mockito.verifyZeroInteractions
 import org.mockito.junit.MockitoJUnit
 
@@ -34,5 +35,14 @@ class MainActivityPresenterShould {
     presenter.getWeatherSync(STRING_EMPTY)
 
     verifyZeroInteractions(getWeatherUseCase)
+  }
+
+  @Test
+  fun get_weather_data_from_use_case() {
+    val location = "Sydney"
+
+    presenter.getWeatherSync(location)
+
+    verify(getWeatherUseCase).getWeather(location)
   }
 }
