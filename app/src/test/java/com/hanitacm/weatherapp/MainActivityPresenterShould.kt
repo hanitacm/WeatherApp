@@ -1,9 +1,9 @@
 package com.hanitacm.weatherapp
 
+import com.hanitacm.domainweather.GetWeatherUseCase
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.ArgumentMatchers.anyString
 import org.mockito.Mock
 import org.mockito.Mockito.verify
 import org.mockito.Mockito.verifyZeroInteractions
