@@ -2,7 +2,7 @@ package com.hanitacm.weatherapp
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import com.hanitacm.domainweather.GetWeatherUseCase
+import com.hanitacm.weatherapp.domain.GetWeatherUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -20,6 +20,11 @@ class WeatherViewModel(private val getWeatherUseCase: GetWeatherUseCase) : ViewM
           .subscribe())
 
     }
+  }
+
+  override fun onCleared() {
+    subscription.dispose()
+    super.onCleared()
   }
 
   class WeatherViewModelFactory(private val getWeatherUseCase: GetWeatherUseCase) :

@@ -1,4 +1,4 @@
-package com.hanitacm.domainweather
+package com.hanitacm.weatherapp.domain
 
 import io.reactivex.Single
 

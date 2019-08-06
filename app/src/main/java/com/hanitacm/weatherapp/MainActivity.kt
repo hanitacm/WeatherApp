@@ -3,7 +3,7 @@ package com.hanitacm.weatherapp
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.hanitacm.domainweather.GetWeatherUseCase
+import com.hanitacm.weatherapp.domain.GetWeatherUseCase
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_main.async
 import kotlinx.android.synthetic.main.activity_main.location

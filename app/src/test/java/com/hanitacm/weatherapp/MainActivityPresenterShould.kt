@@ -1,6 +1,6 @@
 package com.hanitacm.weatherapp
 
-import com.hanitacm.domainweather.GetWeatherUseCase
+import com.hanitacm.weatherapp.domain.GetWeatherUseCase
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test

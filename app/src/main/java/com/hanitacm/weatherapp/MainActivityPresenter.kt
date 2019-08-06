@@ -1,6 +1,6 @@
 package com.hanitacm.weatherapp
 
-import com.hanitacm.domainweather.GetWeatherUseCase
+import com.hanitacm.weatherapp.domain.GetWeatherUseCase
 
 class MainActivityPresenter(private val getWeatherUseCase: GetWeatherUseCase) {
 
