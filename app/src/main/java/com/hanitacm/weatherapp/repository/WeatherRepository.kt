@@ -1,21 +1,12 @@
 package com.hanitacm.weatherapp.repository
 
-import com.hanitacm.weatherapp.repository.api.WeatherService
-import retrofit2.Retrofit
+import com.hanitacm.weatherapp.domain.WeatherDomainModel
+import com.hanitacm.weatherapp.repository.api.WeatherApi
+import io.reactivex.Single
 
-class WeatherRepository {
-  private val weatherAPIUrl = "http://api.openweathermap.org/data/2.5/"
-  private val apiKey = "f33ec8d7f07ee949745b53d8474dbeb2"
-
-  fun getWeather(location:String){
-    val retrofit = Retrofit.Builder()
-        .baseUrl(weatherAPIUrl)
-        .build()
-
-    val service = retrofit.create(WeatherService::class.java)
-
-    service.getWeatherData(apiKey,location)
+class WeatherRepository(private val weatherApi: WeatherApi) {
+  fun getWeather(location: String): Single<WeatherDomainModel> {
+    return weatherApi.getWeather(location).map {  }
   }
-
 
 }
