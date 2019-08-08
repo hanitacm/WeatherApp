@@ -4,6 +4,9 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.hanitacm.weatherapp.domain.GetWeatherUseCase
+import com.hanitacm.weatherapp.repository.WeatherRepository
+import com.hanitacm.weatherapp.repository.api.RetrofitBase
+import com.hanitacm.weatherapp.repository.api.WeatherApi
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_main.async
 import kotlinx.android.synthetic.main.activity_main.location
@@ -18,10 +21,11 @@ class MainActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
 
+    val weatherRepository = WeatherRepository(WeatherApi(RetrofitBase()))
     weatherViewModel =
         ViewModelProviders.of(
             this,
-            WeatherViewModel.WeatherViewModelFactory(GetWeatherUseCase())
+            WeatherViewModel.WeatherViewModelFactory(GetWeatherUseCase(weatherRepository))
         )[WeatherViewModel::class.java]
 
     async.setOnClickListener {
