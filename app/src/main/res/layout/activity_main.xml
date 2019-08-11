@@ -13,7 +13,10 @@
       android:id="@+id/location"
       android:inputType="text"
       android:hint="@string/intro_location"
-
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      android:importantForAutofill="no"
+      tools:targetApi="o"
       />
   <Button
       android:layout_width="wrap_content"
@@ -21,7 +24,7 @@
       android:text="@string/sync_request"
       android:layout_below="@id/location"
       android:id="@+id/sync"
-      android:layout_marginTop="60dp"
+      android:layout_marginTop="76dp"
       app:layout_constraintTop_toBottomOf="@+id/async"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
@@ -33,10 +36,36 @@
       android:id="@+id/async"
       android:layout_below="@id/location"
       android:layout_toEndOf="@id/sync"
-      android:layout_marginTop="112dp"
+      android:layout_marginTop="88dp"
       app:layout_constraintTop_toBottomOf="@+id/location"
-      app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
+      android:layout_marginStart="120dp"
+      />
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="0dp"
+      android:id="@+id/weatherDescription"
+      android:layout_marginTop="60dp"
+      app:layout_constraintTop_toBottomOf="@+id/sync"
+      app:layout_constraintStart_toStartOf="parent"
+      />
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="0dp"
+      android:id="@+id/temperature"
+      android:layout_marginTop="60dp"
+      app:layout_constraintTop_toBottomOf="@id/weatherDescription"
+      app:layout_constraintStart_toStartOf="parent"
+
+      />
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:id="@+id/humidity"
+      android:layout_marginTop="60dp"
+      app:layout_constraintTop_toBottomOf="@id/temperature"
+      app:layout_constraintStart_toStartOf="parent"
+
       />
 
 </android.support.constraint.ConstraintLayout>
