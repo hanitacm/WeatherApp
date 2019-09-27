@@ -4,6 +4,8 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
+import android.view.MenuInflater
 import com.hanitacm.weatherapp.domain.GetWeatherUseCase
 import com.hanitacm.weatherapp.repository.WeatherRepository
 import com.hanitacm.weatherapp.repository.api.RetrofitBase
@@ -45,6 +47,12 @@ class MainActivity : AppCompatActivity() {
         })
 
 
+  }
+
+  override fun onCreateOptionsMenu(menu: Menu): Boolean {
+    val inflater: MenuInflater = menuInflater
+    inflater.inflate(R.menu.menu, menu)
+    return true
   }
 
   private fun processResponse(response: DisplayableWeather?) {

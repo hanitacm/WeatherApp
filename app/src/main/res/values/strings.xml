@@ -4,4 +4,5 @@
   <string name="sync_request">call Sync service</string>
   <string name="async_request">call Async service</string>
   <string name="search">Search location</string>
+  <string name="search_hint">Search location</string>
 </resources>
