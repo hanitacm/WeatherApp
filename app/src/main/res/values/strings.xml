@@ -3,4 +3,5 @@
   <string name="intro_location">Write a city or country</string>
   <string name="sync_request">call Sync service</string>
   <string name="async_request">call Async service</string>
+  <string name="search">Search location</string>
 </resources>
