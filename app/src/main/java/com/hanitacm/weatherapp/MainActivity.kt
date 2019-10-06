@@ -27,13 +27,13 @@ class MainActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
 
-    val weatherRepository = WeatherRepository(WeatherApi(RetrofitBase()))
+    //val weatherRepository = WeatherRepository(WeatherApi(RetrofitBase()))
 
-    weatherViewModel =
-        ViewModelProviders.of(
-            this,
-            WeatherViewModel.WeatherViewModelFactory(GetWeatherUseCase(weatherRepository))
-        )[WeatherViewModel::class.java]
+//    weatherViewModel =
+//        ViewModelProviders.of(
+//            this,
+//            WeatherViewModel.WeatherViewModelFactory(GetWeatherUseCase(weatherRepository))
+//        )[WeatherViewModel::class.java]
 
     async.setOnClickListener {
       weatherViewModel.loadWeather(location.text.toString())
@@ -41,10 +41,10 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    weatherViewModel.getWeather.observe(this,
-        Observer<DisplayableWeather> { response ->
-          processResponse(response)
-        })
+//    weatherViewModel.getWeather.observe(this,
+//        Observer<DisplayableWeather> { response ->
+//          processResponse(response)
+//        })
 
 
   }
@@ -55,11 +55,11 @@ class MainActivity : AppCompatActivity() {
     return true
   }
 
-  private fun processResponse(response: DisplayableWeather?) {
-    if (response != null) {
-      weatherDescription.text = response.description
-      temperature.text = response.temperature.toString()
-      humidity.text = response.humidity.toString()
-    }
-  }
+//  private fun processResponse(response: DisplayableWeather?) {
+//    if (response != null) {
+//      weatherDescription.text = response.description
+//      temperature.text = response.temperature.toString()
+//      humidity.text = response.humidity.toString()
+//    }
+//  }
 }

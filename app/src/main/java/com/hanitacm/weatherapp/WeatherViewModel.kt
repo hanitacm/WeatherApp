@@ -15,8 +15,8 @@ import io.reactivex.schedulers.Schedulers
 class WeatherViewModel(private val getWeatherUseCase: GetWeatherUseCase) : ViewModel() {
   private val subscription = CompositeDisposable()
 
-  private val weather = MutableLiveData<DisplayableWeather>()
-  val getWeather: LiveData<DisplayableWeather>
+  private val weather = MutableLiveData<List<DisplayableWeather>>()
+  val getWeather: LiveData<List<DisplayableWeather>>
     get() = weather
 
 
@@ -37,9 +37,12 @@ class WeatherViewModel(private val getWeatherUseCase: GetWeatherUseCase) : ViewM
     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
   }
 
-  private fun processResponse(result: WeatherDomainModel) {
+  private fun processResponse(result: List<WeatherDomainModel>) {
     Log.d("error", result.toString())
-    weather.postValue(DisplayableWeather(result.description, result.temperature, result.humidity))
+    val displayableItems: List<DisplayableWeather> = result.map { DisplayableWeather("", 10.0, it.humidity, "CO") }
+    weather.postValue(displayableItems)
+
+    //weather.postValue(DisplayableWeather(result.description, result.temperature, result.humidity, result.))
   }
 
   override fun onCleared() {
