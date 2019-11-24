@@ -1,4 +1,4 @@
-package com.hanitacm.weatherapp
+package com.hanitacm.weatherapp.presentation.screen
 
 import android.app.SearchManager
 import android.arch.lifecycle.Observer
@@ -8,7 +8,11 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import com.hanitacm.weatherapp.presentation.model.DisplayableWeather
+import com.hanitacm.weatherapp.R
+import com.hanitacm.weatherapp.presentation.adapter.WeatherAdapter
 import com.hanitacm.weatherapp.domain.GetWeatherUseCase
+import com.hanitacm.weatherapp.presentation.viewmodel.WeatherViewModel
 import com.hanitacm.weatherapp.repository.WeatherRepository
 import com.hanitacm.weatherapp.repository.api.RetrofitBase
 import com.hanitacm.weatherapp.repository.api.WeatherApi

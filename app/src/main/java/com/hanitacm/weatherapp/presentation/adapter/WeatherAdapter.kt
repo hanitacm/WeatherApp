@@ -1,10 +1,12 @@
-package com.hanitacm.weatherapp
+package com.hanitacm.weatherapp.presentation.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.hanitacm.weatherapp.R
+import com.hanitacm.weatherapp.presentation.model.DisplayableWeather
 import kotlinx.android.synthetic.main.weather_location_item.view.location_text
 import kotlinx.android.synthetic.main.weather_location_item.view.weather_description
 import kotlin.properties.Delegates

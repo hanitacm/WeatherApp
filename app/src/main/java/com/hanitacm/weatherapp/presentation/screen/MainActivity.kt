@@ -1,21 +1,14 @@
-package com.hanitacm.weatherapp
+package com.hanitacm.weatherapp.presentation.screen
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuInflater
-import com.hanitacm.weatherapp.domain.GetWeatherUseCase
-import com.hanitacm.weatherapp.repository.WeatherRepository
-import com.hanitacm.weatherapp.repository.api.RetrofitBase
-import com.hanitacm.weatherapp.repository.api.WeatherApi
+import com.hanitacm.weatherapp.R
+import com.hanitacm.weatherapp.presentation.viewmodel.WeatherViewModel
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_main.async
-import kotlinx.android.synthetic.main.activity_main.humidity
 import kotlinx.android.synthetic.main.activity_main.location
-import kotlinx.android.synthetic.main.activity_main.temperature
-import kotlinx.android.synthetic.main.activity_main.weatherDescription
 
 
 class MainActivity : AppCompatActivity() {
