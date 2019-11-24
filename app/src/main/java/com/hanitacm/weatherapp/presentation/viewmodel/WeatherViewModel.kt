@@ -35,11 +35,11 @@ class WeatherViewModel(private val getWeatherUseCase: GetWeatherUseCase) : ViewM
   }
 
   private fun showError(error: Throwable?) {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    Log.d("error", error.toString())//To change body of created functions use File | Settings | File Templates.
   }
 
   private fun processResponse(result: List<WeatherDomainModel>) {
-    Log.d("error", result.toString())
+    Log.d("info", result.toString())
     val displayableItems: List<DisplayableWeather> = result.map { DisplayableWeather("", 10.0, it.humidity, "CO") }
     weather.postValue(displayableItems)
 

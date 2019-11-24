@@ -6,8 +6,8 @@ import com.hanitacm.weatherapp.domain.WeatherDomainModel
 
 class WeatherDataDomainMapper {
 
-  fun mapToDomainModel(weatherSet: List<WeatherData>?)
-      : List<WeatherDomainModel> = weatherSet?.map { mapWeatherToDomainModel(it) } ?: emptyList()
+  fun mapToDomainModel(weatherSet: WeatherData)
+      : List<WeatherDomainModel> = listOf(mapWeatherToDomainModel(weatherSet))
 
   private fun mapWeatherToDomainModel(data: WeatherData): WeatherDomainModel =
       WeatherDomainModel(

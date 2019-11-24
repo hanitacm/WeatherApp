@@ -16,14 +16,20 @@
       android:theme="@style/AppTheme"
       tools:ignore="GoogleAppIndexingWarning"
       >
-    <activity android:name=".presentation.screen.SearchableActivity">
+
+    <activity
+        android:name=".presentation.screen.SearchableActivity"
+        android:launchMode="singleTop"
+        >
       <intent-filter>
         <action android:name="android.intent.action.SEARCH" />
       </intent-filter>
+
       <meta-data
           android:name="android.app.searchable"
           android:resource="@xml/searchable"
           />
+
     </activity>
     <activity android:name=".presentation.screen.MainActivity">
       <intent-filter>
@@ -32,6 +38,7 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
+
   </application>
 
 </manifest>
