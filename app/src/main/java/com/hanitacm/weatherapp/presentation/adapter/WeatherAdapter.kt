@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.weather_location_item.view.location_text
 import kotlinx.android.synthetic.main.weather_location_item.view.weather_description
 import kotlin.properties.Delegates
 
-class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() {
+internal  class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() {
   var items: List<DisplayableWeather> by Delegates.observable(emptyList()) { p, old, new -> notifyDataSetChanged() }
 
   override fun getItemCount(): Int {
@@ -34,7 +34,7 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() 
   }
 
 
-  class WeatherViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+ internal inner class WeatherViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
     val location : TextView = itemView.location_text
     val weatherDescription :TextView = itemView.weather_description
 

@@ -21,6 +21,7 @@ import com.hanitacm.weatherapp.repository.WeatherRepository
 import com.hanitacm.weatherapp.repository.api.RetrofitBase
 import com.hanitacm.weatherapp.repository.api.WeatherApi
 import com.hanitacm.weatherapp.repository.data.WeatherDataDomainMapper
+import kotlinx.android.synthetic.main.activity_searchable.locations
 
 class SearchableActivity : AppCompatActivity() {
   private lateinit var weatherViewModel: WeatherViewModel
@@ -40,6 +41,8 @@ class SearchableActivity : AppCompatActivity() {
 
     viewManager = LinearLayoutManager(this)
     viewAdapter = WeatherAdapter()
+
+    locations.adapter = viewAdapter
 
     weatherViewModel =
         ViewModelProviders.of(
