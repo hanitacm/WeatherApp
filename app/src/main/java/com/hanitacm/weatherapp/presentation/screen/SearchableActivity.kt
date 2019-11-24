@@ -41,8 +41,8 @@ class SearchableActivity : AppCompatActivity() {
 
     viewManager = LinearLayoutManager(this)
     viewAdapter = WeatherAdapter()
-
     locations.adapter = viewAdapter
+    locations.layoutManager = viewManager
 
     weatherViewModel =
         ViewModelProviders.of(
@@ -77,19 +77,7 @@ class SearchableActivity : AppCompatActivity() {
 
     val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
     (menu.findItem(R.id.app_bar_search).actionView as SearchView).apply {
-      //      // Assumes current activity is the searchable activity
       setSearchableInfo(searchManager.getSearchableInfo(componentName))
-//      setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-//        override fun onQueryTextSubmit(location: String?): Boolean {
-//          getWeatherLocations(location)
-//          return false
-//        }
-//
-//        override fun onQueryTextChange(p0: String?): Boolean {
-//          return false
-//        }
-//      })
-
     }
 
     return true
@@ -104,9 +92,6 @@ class SearchableActivity : AppCompatActivity() {
   private fun processResponse(response: List<DisplayableWeather>?) {
     if (response != null) {
       viewAdapter.items = response
-//      weatherDescription.text = response.description
-//      temperature.text = response.temperature.toString()
-//      humidity.text = response.humidity.toString()
-    }
+}
   }
 }
