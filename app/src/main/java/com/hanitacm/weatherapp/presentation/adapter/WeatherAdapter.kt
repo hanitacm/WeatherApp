@@ -42,7 +42,7 @@ internal  class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherView
 
     fun bind(mediaItem: DisplayableWeather) {
 
-      location.text = mediaItem.temperature.toString()
+      location.text = mediaItem.location
       weatherDescription.text =mediaItem.description
     }
   }

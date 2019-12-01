@@ -8,12 +8,13 @@ import android.util.Log
 import com.hanitacm.weatherapp.domain.GetWeatherUseCase
 import com.hanitacm.weatherapp.domain.WeatherDomainModel
 import com.hanitacm.weatherapp.presentation.model.DisplayableWeather
+import com.hanitacm.weatherapp.presentation.model.mapper.DomainViewMapper
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 
-class WeatherViewModel(private val getWeatherUseCase: GetWeatherUseCase) : ViewModel() {
+class WeatherViewModel(private val getWeatherUseCase: GetWeatherUseCase, private val mapper: DomainViewMapper) : ViewModel() {
   private val subscription = CompositeDisposable()
 
   private val weather = MutableLiveData<List<DisplayableWeather>>()
@@ -40,8 +41,7 @@ class WeatherViewModel(private val getWeatherUseCase: GetWeatherUseCase) : ViewM
 
   private fun processResponse(result: List<WeatherDomainModel>) {
     Log.d("info", result.toString())
-    val displayableItems: List<DisplayableWeather> = result.map { DisplayableWeather(it.location, it.country, it.weather, it.temperature.temperature, it.humidity) }
-    weather.postValue(displayableItems)
+    weather.postValue(mapper.mapToView(result))
 
     //weather.postValue(DisplayableWeather(result.description, result.temperature, result.humidity, result.))
   }
@@ -51,11 +51,11 @@ class WeatherViewModel(private val getWeatherUseCase: GetWeatherUseCase) : ViewM
     super.onCleared()
   }
 
-  class WeatherViewModelFactory(private val getWeatherUseCase: GetWeatherUseCase) :
+  class WeatherViewModelFactory(private val getWeatherUseCase: GetWeatherUseCase, private val mapper: DomainViewMapper) :
       ViewModelProvider.NewInstanceFactory() {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-      return WeatherViewModel(getWeatherUseCase) as T
+      return WeatherViewModel(getWeatherUseCase, mapper) as T
     }
   }
 }

@@ -16,6 +16,7 @@ import com.hanitacm.weatherapp.R
 import com.hanitacm.weatherapp.domain.GetWeatherUseCase
 import com.hanitacm.weatherapp.presentation.adapter.WeatherAdapter
 import com.hanitacm.weatherapp.presentation.model.DisplayableWeather
+import com.hanitacm.weatherapp.presentation.model.mapper.DomainViewMapper
 import com.hanitacm.weatherapp.presentation.viewmodel.WeatherViewModel
 import com.hanitacm.weatherapp.repository.WeatherRepository
 import com.hanitacm.weatherapp.repository.api.RetrofitBase
@@ -47,7 +48,7 @@ class SearchableActivity : AppCompatActivity() {
     weatherViewModel =
         ViewModelProviders.of(
             this,
-            WeatherViewModel.WeatherViewModelFactory(GetWeatherUseCase(weatherRepository))
+            WeatherViewModel.WeatherViewModelFactory(GetWeatherUseCase(weatherRepository), DomainViewMapper())
         )[WeatherViewModel::class.java]
 
     weatherViewModel.getWeather.observe(this,
@@ -92,6 +93,6 @@ class SearchableActivity : AppCompatActivity() {
   private fun processResponse(response: List<DisplayableWeather>?) {
     if (response != null) {
       viewAdapter.items = response
-}
+    }
   }
 }
