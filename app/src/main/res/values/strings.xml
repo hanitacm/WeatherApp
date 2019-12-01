@@ -5,4 +5,5 @@
   <string name="async_request">call Async service</string>
   <string name="search">Search location</string>
   <string name="search_hint">Search location</string>
+  <string name="listable_temperature">%1$s °С temperature from %2$s to %3$s °С</string>
 </resources>

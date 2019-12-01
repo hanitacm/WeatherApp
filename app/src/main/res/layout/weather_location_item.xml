@@ -27,4 +27,44 @@
       app:layout_constraintTop_toTopOf="parent"
 
       />
+  <TextView
+      android:id="@+id/location_temperature"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/location_text"
+      />
+  <TextView
+      android:id="@+id/location_wind"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:layout_constraintStart_toEndOf="@id/location_temperature"
+      app:layout_constraintTop_toBottomOf="@id/location_text"
+      />
+  <TextView
+      android:id="@+id/location_clouds"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:layout_constraintStart_toEndOf="@id/location_wind"
+      app:layout_constraintTop_toBottomOf="@id/location_text"
+      />
+  <TextView
+      android:id="@+id/location_pressure"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:layout_constraintStart_toEndOf="@id/location_clouds"
+      app:layout_constraintTop_toBottomOf="@id/location_text"
+      />
+  <TextView
+      android:id="@+id/location_coordinates"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/location_temperature"
+      />
+
+  <!--Barcelona, ES  few clouds
+  11.7°С temperature from 8.3 to 14.4 °С, wind 1.26 m/s. clouds 20 %, 1011 hpa
+
+  Geo coords [41.3829, 2.1774]-->
 </android.support.constraint.ConstraintLayout>
