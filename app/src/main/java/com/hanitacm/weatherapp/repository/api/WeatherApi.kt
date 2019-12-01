@@ -1,6 +1,7 @@
 package com.hanitacm.weatherapp.repository.api
 
 import com.hanitacm.weatherapp.repository.data.WeatherData
+import com.hanitacm.weatherapp.repository.data.WeatherLocationData
 import io.reactivex.Single
 
 class WeatherApi(private val retrofit: RetrofitBase) {
@@ -13,6 +14,13 @@ class WeatherApi(private val retrofit: RetrofitBase) {
         .create(WeatherService::class.java)
 
     return weatherService.getWeatherData(apiKey, location)
+  }
+
+  fun getWeatherLocations(location: String): Single<WeatherLocationData>{
+    val weatherService = retrofit.configRetrofitCall()
+        .create(WeatherService::class.java)
+
+    return weatherService.getWeatherLocation(apiKey, location)
   }
 
 

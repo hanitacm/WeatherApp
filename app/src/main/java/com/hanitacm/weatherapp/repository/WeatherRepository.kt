@@ -9,6 +9,12 @@ class WeatherRepository(private val weatherApi: WeatherApi, private val mapper: 
   fun getWeather(location: String): Single<List<WeatherDomainModel>> {
     return weatherApi.getWeather(location).map { mapper.mapToDomainModel(it) }
   }
+
+  fun getWeatherLocations(location: String) : Single<List<WeatherDomainModel>>{
+    return weatherApi.getWeatherLocations(location).map{
+      mapper.mapLocationsDataToDomainModel(it)
+    }
+  }
 }
 
 

@@ -23,5 +23,11 @@ class WeatherDataDomainMapper {
           , data.clouds.all
           , data.main.pressure)
 
-
+  fun mapLocationsDataToDomainModel(data: WeatherLocationData): List<WeatherDomainModel> {
+    return if (data.count > 0) data.list.map { mapWeatherToDomainModel(it) }
+           else emptyList()
+  }
 }
+
+
+
