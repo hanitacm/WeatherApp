@@ -1,8 +1,10 @@
-package com.hanitacm.weatherapp.repository.data
+package com.hanitacm.weatherapp.repository.data.mapper
 
 import com.hanitacm.weatherapp.domain.Coordinates
 import com.hanitacm.weatherapp.domain.Temperature
 import com.hanitacm.weatherapp.domain.WeatherDomainModel
+import com.hanitacm.weatherapp.repository.data.WeatherData
+import com.hanitacm.weatherapp.repository.data.WeatherLocationData
 
 class WeatherDataDomainMapper {
 

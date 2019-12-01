@@ -2,7 +2,7 @@ package com.hanitacm.weatherapp.repository
 
 import com.hanitacm.weatherapp.domain.WeatherDomainModel
 import com.hanitacm.weatherapp.repository.api.WeatherApi
-import com.hanitacm.weatherapp.repository.data.WeatherDataDomainMapper
+import com.hanitacm.weatherapp.repository.data.mapper.WeatherDataDomainMapper
 import io.reactivex.Single
 
 class WeatherRepository(private val weatherApi: WeatherApi, private val mapper: WeatherDataDomainMapper) {

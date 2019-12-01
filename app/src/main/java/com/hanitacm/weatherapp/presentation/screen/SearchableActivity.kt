@@ -20,7 +20,7 @@ import com.hanitacm.weatherapp.presentation.viewmodel.WeatherViewModel
 import com.hanitacm.weatherapp.repository.WeatherRepository
 import com.hanitacm.weatherapp.repository.api.RetrofitBase
 import com.hanitacm.weatherapp.repository.api.WeatherApi
-import com.hanitacm.weatherapp.repository.data.WeatherDataDomainMapper
+import com.hanitacm.weatherapp.repository.data.mapper.WeatherDataDomainMapper
 import kotlinx.android.synthetic.main.activity_searchable.locations
 
 class SearchableActivity : AppCompatActivity() {
