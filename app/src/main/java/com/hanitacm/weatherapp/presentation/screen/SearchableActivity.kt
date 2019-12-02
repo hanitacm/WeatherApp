@@ -24,6 +24,7 @@ import com.hanitacm.weatherapp.repository.api.WeatherApi
 import com.hanitacm.weatherapp.repository.data.mapper.WeatherDataDomainMapper
 import kotlinx.android.synthetic.main.activity_searchable.locations
 
+
 class SearchableActivity : AppCompatActivity() {
   private lateinit var weatherViewModel: WeatherViewModel
   private lateinit var viewAdapter: WeatherAdapter
@@ -77,9 +78,27 @@ class SearchableActivity : AppCompatActivity() {
     menu.findItem(R.id.app_bar_search).actionView
 
     val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
-    (menu.findItem(R.id.app_bar_search).actionView as SearchView).apply {
-      setSearchableInfo(searchManager.getSearchableInfo(componentName))
-    }
+    (menu.findItem(R.id.app_bar_search).actionView as SearchView)
+        .apply {
+          setSearchableInfo(searchManager.getSearchableInfo(componentName))
+
+          setOnCloseListener {
+            viewAdapter.items = emptyList()
+            false
+          }
+
+          setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+              return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+              if (newText.isNullOrEmpty()) viewAdapter.items = emptyList()
+              return false
+            }
+          })
+
+        }
 
     return true
   }
