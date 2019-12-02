@@ -45,6 +45,7 @@ internal class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewH
 
 
     fun bind(mediaItem: DisplayableWeather) {
+      //imageWeather.load(itemView.context.getString(R.string.weather_icon_url,mediaItem.icon)
       location.text = mediaItem.location
       weatherDescription.text = mediaItem.description
       temperature.text = itemView.context.getString(R.string.listable_temperature, mediaItem.temperature, mediaItem.temperature_min, mediaItem.temperature_max)

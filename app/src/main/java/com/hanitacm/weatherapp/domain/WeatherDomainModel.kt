@@ -1,6 +1,15 @@
 package com.hanitacm.weatherapp.domain
 
-data class WeatherDomainModel(val coordinates: Coordinates, val location: String, val country: String, val weather: String, val temperature: Temperature, val humidity: Int, val wind: Double, val clouds: Int, val pressure: Int)
+data class WeatherDomainModel(val coordinates: Coordinates,
+                              val location: String,
+                              val country: String,
+                              val weather: String,
+                              val temperature: Temperature,
+                              val humidity: Int,
+                              val wind: Double,
+                              val clouds: Int,
+                              val pressure: Int,
+                              val icon: String)
 
 data class Coordinates(val longitude: Double, val latitude: Double)
 data class Temperature(val temperature: Double, val maxTemperature: Double, val minTemperature: Double)

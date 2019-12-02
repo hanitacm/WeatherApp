@@ -11,7 +11,8 @@ class DomainViewMapper {
             it.temperature.temperature.toString(),
             it.temperature.minTemperature.toString(),
             it.temperature.maxTemperature.toString(),
-            it.humidity)
+            it.humidity,
+            it.icon)
       }
 
 
