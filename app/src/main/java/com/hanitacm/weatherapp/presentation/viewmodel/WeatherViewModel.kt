@@ -1,9 +1,9 @@
 package com.hanitacm.weatherapp.presentation.viewmodel
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import android.util.Log
 import com.hanitacm.weatherapp.domain.GetWeatherUseCase
 import com.hanitacm.weatherapp.domain.WeatherDomainModel
