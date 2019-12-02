@@ -58,14 +58,12 @@
       app:layout_constraintTop_toBottomOf="@id/location_text"
       />
   <TextView
-      android:id="@+id/location_pressure"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       app:layout_constraintStart_toEndOf="@id/location_clouds"
       app:layout_constraintTop_toBottomOf="@id/location_text"
       />
   <TextView
-      android:id="@+id/location_coordinates"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       app:layout_constraintStart_toStartOf="parent"
