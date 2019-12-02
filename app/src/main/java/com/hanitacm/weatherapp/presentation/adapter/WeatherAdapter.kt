@@ -1,11 +1,13 @@
 package com.hanitacm.weatherapp.presentation.adapter
 
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import coil.api.load
+import coil.transform.CircleCropTransformation
 import com.hanitacm.weatherapp.R
 import com.hanitacm.weatherapp.presentation.model.DisplayableWeather
 import kotlinx.android.synthetic.main.weather_location_item.view.image_weather
@@ -45,7 +47,7 @@ internal class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewH
 
 
     fun bind(mediaItem: DisplayableWeather) {
-      //imageWeather.load(itemView.context.getString(R.string.weather_icon_url,mediaItem.icon)
+      imageWeather.load(itemView.context.getString(R.string.weather_icon_url,mediaItem.icon))
       location.text = mediaItem.location
       weatherDescription.text = mediaItem.description
       temperature.text = itemView.context.getString(R.string.listable_temperature, mediaItem.temperature, mediaItem.temperature_min, mediaItem.temperature_max)
