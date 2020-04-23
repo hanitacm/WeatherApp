@@ -12,9 +12,10 @@ import com.hanitacm.weatherapp.presentation.model.mapper.DomainViewMapper
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
 
-class WeatherViewModel(private val getWeatherUseCase: GetWeatherUseCase, private val mapper: DomainViewMapper) : ViewModel() {
+class WeatherViewModel @Inject constructor(private val getWeatherUseCase: GetWeatherUseCase, private val mapper: DomainViewMapper) : ViewModel() {
   private val subscription = CompositeDisposable()
 
   private val weather = MutableLiveData<List<DisplayableWeather>>()

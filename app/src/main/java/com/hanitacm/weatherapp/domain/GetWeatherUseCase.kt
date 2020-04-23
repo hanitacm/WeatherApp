@@ -2,8 +2,9 @@ package com.hanitacm.weatherapp.domain
 
 import com.hanitacm.weatherapp.repository.WeatherRepository
 import io.reactivex.Single
+import javax.inject.Inject
 
-class GetWeatherUseCase(private val weatherRepository: WeatherRepository) {
+class GetWeatherUseCase @Inject constructor(private val weatherRepository: WeatherRepository) {
   fun getWeather(location: String): Single<List<WeatherDomainModel>> {
     //return weatherRepository.getWeather(location)
     return weatherRepository.getWeatherLocations(location)

@@ -6,9 +6,10 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 
 
-class RetrofitBase {
+class RetrofitBase @Inject constructor(){
   private val weatherAPIUrl = "http://api.openweathermap.org/data/2.5/"
 
   fun configRetrofitCall(): Retrofit {

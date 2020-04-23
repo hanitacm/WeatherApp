@@ -3,8 +3,9 @@ package com.hanitacm.weatherapp.repository.api
 import com.hanitacm.weatherapp.repository.data.WeatherData
 import com.hanitacm.weatherapp.repository.data.WeatherLocationData
 import io.reactivex.Single
+import javax.inject.Inject
 
-class WeatherApi(private val retrofit: RetrofitBase) {
+class WeatherApi @Inject constructor(private val retrofit: RetrofitBase) {
   private val apiKey = "f33ec8d7f07ee949745b53d8474dbeb2"
 
 
