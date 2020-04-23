@@ -10,7 +10,6 @@ import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hanitacm.weatherapp.R
@@ -26,8 +25,7 @@ class SearchableActivity : AppCompatActivity() {
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
 
-  //private val weatherViewModel by viewModels<WeatherViewModel> { viewModelFactory }
-
+  private lateinit var weatherViewModel: WeatherViewModel
   private lateinit var viewAdapter: WeatherAdapter
   private lateinit var viewManager: RecyclerView.LayoutManager
 
@@ -39,16 +37,12 @@ class SearchableActivity : AppCompatActivity() {
 
     handleIntent(intent)
 
-    //val weatherApi = WeatherApi(RetrofitBase())
-    //val weatherRepository = WeatherRepository(weatherApi, mapper)
-
-
     viewManager = LinearLayoutManager(this)
     viewAdapter = WeatherAdapter()
     locations.adapter = viewAdapter
     locations.layoutManager = viewManager
 
-    val weatherViewModel = ViewModelProviders.of(this, viewModelFactory)[WeatherViewModel::class.java]
+    weatherViewModel = ViewModelProvider(this, viewModelFactory)[WeatherViewModel::class.java]
 
     weatherViewModel.getWeather.observe(this,
         Observer { response -> processResponse(response) })
@@ -101,8 +95,8 @@ class SearchableActivity : AppCompatActivity() {
   }
 
   private fun getWeatherLocations(location: String?) {
-    //if (!location.isNullOrBlank())
-     // weatherViewModel.loadWeather(location)
+    if (!location.isNullOrBlank())
+      weatherViewModel.loadWeather(location)
   }
 
 
