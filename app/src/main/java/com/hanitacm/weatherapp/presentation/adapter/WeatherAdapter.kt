@@ -7,7 +7,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
-import coil.transform.CircleCropTransformation
 import com.hanitacm.weatherapp.R
 import com.hanitacm.weatherapp.presentation.model.DisplayableWeather
 import kotlinx.android.synthetic.main.weather_location_item.view.image_weather

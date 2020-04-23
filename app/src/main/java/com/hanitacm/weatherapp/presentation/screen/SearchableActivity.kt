@@ -1,8 +1,6 @@
 package com.hanitacm.weatherapp.presentation.screen
 
 import android.app.SearchManager
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -10,56 +8,49 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hanitacm.weatherapp.R
-import com.hanitacm.weatherapp.domain.GetWeatherUseCase
+import com.hanitacm.weatherapp.WeatherApplication
 import com.hanitacm.weatherapp.presentation.adapter.WeatherAdapter
 import com.hanitacm.weatherapp.presentation.model.DisplayableWeather
-import com.hanitacm.weatherapp.presentation.model.mapper.DomainViewMapper
 import com.hanitacm.weatherapp.presentation.viewmodel.WeatherViewModel
-import com.hanitacm.weatherapp.repository.WeatherRepository
-import com.hanitacm.weatherapp.repository.api.RetrofitBase
-import com.hanitacm.weatherapp.repository.api.WeatherApi
-import com.hanitacm.weatherapp.repository.data.mapper.WeatherDataDomainMapper
 import kotlinx.android.synthetic.main.activity_searchable.locations
+import javax.inject.Inject
 
 
 class SearchableActivity : AppCompatActivity() {
+  @Inject
+  lateinit var viewModelFactory: ViewModelProvider.Factory
+
   private lateinit var weatherViewModel: WeatherViewModel
   private lateinit var viewAdapter: WeatherAdapter
   private lateinit var viewManager: RecyclerView.LayoutManager
 
   override fun onCreate(savedInstanceState: Bundle?) {
+    (application as WeatherApplication).mainComponent.inject(this)
+
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_searchable)
 
     handleIntent(intent)
-
-    val weatherApi = WeatherApi(RetrofitBase())
-    val mapper = WeatherDataDomainMapper()
-    val weatherRepository = WeatherRepository(weatherApi, mapper)
-
 
     viewManager = LinearLayoutManager(this)
     viewAdapter = WeatherAdapter()
     locations.adapter = viewAdapter
     locations.layoutManager = viewManager
 
-    weatherViewModel =
-        ViewModelProviders.of(
-            this,
-            WeatherViewModel.WeatherViewModelFactory(GetWeatherUseCase(weatherRepository), DomainViewMapper())
-        )[WeatherViewModel::class.java]
+    weatherViewModel = ViewModelProvider(this, viewModelFactory)[WeatherViewModel::class.java]
 
     weatherViewModel.getWeather.observe(this,
-        Observer<List<DisplayableWeather>> { response ->
-          processResponse(response)
-        })
+        Observer { response -> processResponse(response) })
   }
 
 
   override fun onNewIntent(intent: Intent) {
+    super.onNewIntent(intent)
     setIntent(intent)
     handleIntent(intent)
   }

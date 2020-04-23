@@ -5,8 +5,9 @@ import com.hanitacm.weatherapp.domain.Temperature
 import com.hanitacm.weatherapp.domain.WeatherDomainModel
 import com.hanitacm.weatherapp.repository.data.WeatherData
 import com.hanitacm.weatherapp.repository.data.WeatherLocationData
+import javax.inject.Inject
 
-class WeatherDataDomainMapper {
+class WeatherDataDomainMapper @Inject constructor() {
 
   fun mapToDomainModel(weatherSet: WeatherData)
       : List<WeatherDomainModel> = listOf(mapWeatherToDomainModel(weatherSet))
