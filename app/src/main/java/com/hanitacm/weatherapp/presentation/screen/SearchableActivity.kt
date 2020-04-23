@@ -40,7 +40,6 @@ class SearchableActivity : AppCompatActivity() {
     handleIntent(intent)
 
     //val weatherApi = WeatherApi(RetrofitBase())
-    //val mapper = WeatherDataDomainMapper()
     //val weatherRepository = WeatherRepository(weatherApi, mapper)
 
 
@@ -52,13 +51,12 @@ class SearchableActivity : AppCompatActivity() {
     val weatherViewModel = ViewModelProviders.of(this, viewModelFactory)[WeatherViewModel::class.java]
 
     weatherViewModel.getWeather.observe(this,
-        Observer<List<DisplayableWeather>> { response ->
-          processResponse(response)
-        })
+        Observer { response -> processResponse(response) })
   }
 
 
   override fun onNewIntent(intent: Intent) {
+    super.onNewIntent(intent)
     setIntent(intent)
     handleIntent(intent)
   }
