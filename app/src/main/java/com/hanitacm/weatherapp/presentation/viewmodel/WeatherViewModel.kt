@@ -56,6 +56,7 @@ class WeatherViewModel @Inject constructor(private val getWeatherUseCase: GetWea
       ViewModelProvider.NewInstanceFactory() {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+      @Suppress("UNCHECKED_CAST")
       return WeatherViewModel(getWeatherUseCase, mapper) as T
     }
   }
