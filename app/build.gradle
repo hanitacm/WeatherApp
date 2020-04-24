@@ -35,6 +35,8 @@ dependencies {
   def retrofit_version = '2.3.0'
   def coil_version = "0.8.0"
   def dagger_version = "2.25.2"
+  def support_version = '1.1.0'
+
 
   implementation fileTree(include: ['*.jar'], dir: 'libs')
 
@@ -42,8 +44,11 @@ dependencies {
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
   /* Android Support Library: RecyclerView */
-  implementation 'androidx.appcompat:appcompat:1.1.0'
-  implementation 'androidx.recyclerview:recyclerview:1.1.0'
+  implementation "androidx.appcompat:appcompat:$support_version"
+  implementation "androidx.recyclerview:recyclerview:$support_version"
+
+  implementation "com.google.android.material:material:$support_version"
+
 
   /* Android Architecture Component - ConstraintLayout  */
   implementation 'androidx.constraintlayout:constraintlayout:1.1.3'

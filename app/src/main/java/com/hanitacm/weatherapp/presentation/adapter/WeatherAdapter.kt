@@ -16,14 +16,14 @@ import kotlinx.android.synthetic.main.weather_location_item.view.weather_descrip
 import kotlin.properties.Delegates
 
 internal class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() {
-  var items: List<DisplayableWeather> by Delegates.observable(emptyList()) { p, old, new -> notifyDataSetChanged() }
+  var items: List<DisplayableWeather> by Delegates.observable(emptyList()) { _, _, _ -> notifyDataSetChanged() }
 
   override fun getItemCount(): Int {
     return items.size
   }
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherViewHolder {
-    val v = LayoutInflater.from(parent.context).inflate(R.layout.weather_location_item, null)
+    val v = LayoutInflater.from(parent.context).inflate(R.layout.weather_location_item, parent)
 
 
     return WeatherViewHolder(v)
