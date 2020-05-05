@@ -5,5 +5,8 @@
   <string name="listable_temperature">%1$s °С temperature from %2$s to %3$s °С</string>
   <string name="weather_icon_url"
       translatable="false">http://openweathermap.org/img/wn/%1s@2x.png  </string>
+  <string name="title_activity_maps">MapsActivity</string>
+  <string name="tab_text_1">Tab 1</string>
+  <string name="tab_text_2">Tab 2</string>
 
 </resources>
