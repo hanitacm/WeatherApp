@@ -45,7 +45,6 @@ dependencies {
   /* Android Support Library: RecyclerView */
   implementation "androidx.appcompat:appcompat:$support_version"
   implementation "androidx.recyclerview:recyclerview:$support_version"
-
   implementation "com.google.android.material:material:$support_version"
 
 
@@ -67,10 +66,8 @@ dependencies {
 
   implementation("io.coil-kt:coil:$coil_version")
 
-  implementation "com.google.dagger:dagger:$dagger_version"
-
   /* Dagger2 - default dependency */
-  implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+  implementation "com.google.dagger:dagger:$dagger_version"
   kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
   testImplementation 'junit:junit:4.12'
