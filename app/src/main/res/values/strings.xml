@@ -6,7 +6,7 @@
   <string name="weather_icon_url"
       translatable="false">http://openweathermap.org/img/wn/%1s@2x.png  </string>
   <string name="title_activity_maps">MapsActivity</string>
-  <string name="tab_text_1">Tab 1</string>
-  <string name="tab_text_2">Tab 2</string>
+  <string name="tab_text_1">Temperature</string>
+  <string name="tab_text_2">Precipitation</string>
 
 </resources>
