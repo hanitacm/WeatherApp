@@ -78,24 +78,23 @@
           android:layout_height="wrap_content"
           android:gravity="center_horizontal"
           android:text="Humidity"
-          android:textColor="#aaffffff"
-          android:textSize="@dimen/middle"
+          style="@style/WeatherData"
+
           />
       <TextView
           android:layout_width="fill_parent"
           android:layout_height="wrap_content"
           android:gravity="center_horizontal"
           android:text="Pressure"
-          android:textColor="#aaffffff"
-          android:textSize="@dimen/middle"
+          style="@style/WeatherData"
+
           />
       <TextView
           android:layout_width="fill_parent"
           android:layout_height="wrap_content"
           android:gravity="center_horizontal"
           android:text="Wind"
-          android:textColor="#aaffffff"
-          android:textSize="@dimen/middle"
+          style="@style/WeatherData"
           />
     </TableRow>
     <TableRow
