@@ -79,7 +79,7 @@
           android:gravity="center_horizontal"
           android:text="Humidity"
           android:textColor="#aaffffff"
-          android:textSize="@dimen/material_text_body1"
+          android:textSize="@dimen/middle"
           />
       />
       <TextView
@@ -88,7 +88,7 @@
           android:gravity="center_horizontal"
           android:text="Pressure"
           android:textColor="#aaffffff"
-          android:textSize="@dimen/material_text_body1"
+          android:textSize="@dimen/middle"
           />
       <TextView
           android:layout_width="fill_parent"
@@ -96,7 +96,7 @@
           android:gravity="center_horizontal"
           android:text="Wind"
           android:textColor="#aaffffff"
-          android:textSize="@dimen/material_text_body1"
+          android:textSize="@dimen/middle"
           />
     </TableRow>
     <TableRow
@@ -109,7 +109,7 @@
           android:layout_height="wrap_content"
           android:gravity="center_horizontal"
           android:textColor="#ffffffff"
-          android:textSize="@dimen/material_text_title"
+          android:textSize="@dimen/title"
           />
       <TextView
           android:id="@+id/pressure"
@@ -117,7 +117,7 @@
           android:layout_height="wrap_content"
           android:gravity="center_horizontal"
           android:textColor="#ffffffff"
-          android:textSize="@dimen/material_text_title"
+          android:textSize="@dimen/title"
           />
       <TextView
           android:id="@+id/wind"
@@ -125,7 +125,7 @@
           android:layout_height="wrap_content"
           android:gravity="center_horizontal"
           android:textColor="#ffffffff"
-          android:textSize="@dimen/material_text_title"
+          android:textSize="@dimen/title"
           />
     </TableRow>
 
