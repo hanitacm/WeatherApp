@@ -4,21 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#192A4C"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".presentation.screen.FirstFragment"
     >
 
-  <!--  <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"-->
-  <!--      android:layout_width="match_parent"-->
-  <!--      android:layout_height="fill_parent"-->
-  <!--      android:background="#192A4C">-->
-  <!--    <LinearLayout-->
-  <!--        android:layout_width="match_parent"-->
-  <!--        android:layout_height="wrap_content"-->
-  <!--        android:paddingLeft="@dimen/activity_horizontal_margin"-->
-  <!--        android:paddingRight="@dimen/activity_horizontal_margin"-->
-  <!--        android:paddingTop="@dimen/activity_vertical_margin"-->
-  <!--        android:paddingBottom="@dimen/activity_vertical_margin"-->
-  <!--        android:orientation="vertical">-->
+
   <TextView
       android:id="@+id/locationName"
       android:layout_width="fill_parent"
@@ -26,7 +20,7 @@
       android:layout_marginTop="40dp"
       android:gravity="center_horizontal"
       android:textColor="@android:color/white"
-      android:textSize="@dimen/mat@dimen/material_text_title"
+      android:textSize="@dimen/display2"
       android:textStyle="bold"
       app:layout_constraintBottom_toTopOf="@id/temp"
       app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +35,7 @@
       android:layout_marginBottom="40dp"
       android:gravity="center_horizontal"
       android:textColor="#ffffffff"
-      android:textSize="@dimen/material_text_display3"
+      android:textSize="@dimen/display2"
       app:layout_constraintBottom_toTopOf="@id/status"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
@@ -49,11 +43,10 @@
       />
   <TextView
       android:id="@+id/status"
+      style="@style/Header"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
       android:gravity="center_horizontal"
-      android:textColor="#ffffffff"
-      android:textSize="@dimen/material_text_headline"
       app:layout_constraintBottom_toTopOf="@id/meteo_data"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
@@ -74,27 +67,32 @@
         android:layout_height="match_parent"
         >
       <TextView
+          style="@style/WeatherData"
           android:layout_width="fill_parent"
           android:layout_height="wrap_content"
+          android:layout_weight="1"
           android:gravity="center_horizontal"
           android:text="@string/humidity"
-          style="@style/WeatherData"
 
           />
       <TextView
+          style="@style/WeatherData"
           android:layout_width="fill_parent"
           android:layout_height="wrap_content"
+          android:layout_weight="1"
           android:gravity="center_horizontal"
           android:text="@string/pressure"
-          style="@style/WeatherData"
+
 
           />
       <TextView
+          style="@style/WeatherData"
           android:layout_width="fill_parent"
           android:layout_height="wrap_content"
+          android:layout_weight="1"
           android:gravity="center_horizontal"
           android:text="@string/wind"
-          style="@style/WeatherData"
+
           />
     </TableRow>
     <TableRow
@@ -103,129 +101,34 @@
         >
       <TextView
           android:id="@+id/humidity"
+          style="@style/Header"
           android:layout_width="fill_parent"
           android:layout_height="wrap_content"
+          android:layout_weight="1"
           android:gravity="center_horizontal"
-          style="@style/Header"
+
           />
       <TextView
           android:id="@+id/pressure"
+          style="@style/Header"
           android:layout_width="fill_parent"
           android:layout_height="wrap_content"
+          android:layout_weight="1"
           android:gravity="center_horizontal"
-          style="@style/Header"
+
           />
       <TextView
           android:id="@+id/wind"
+          style="@style/Header"
           android:layout_width="fill_parent"
           android:layout_height="wrap_content"
+          android:layout_weight="1"
           android:gravity="center_horizontal"
-          style="@style/Header"
+
           />
     </TableRow>
 
   </TableLayout>
 
-  <!--  <LinearLayout-->
-  <!--      android:layout_width="fill_parent"-->
-  <!--      android:layout_height="wrap_content"-->
-  <!--      android:layout_marginTop="40dp"-->
-  <!--      android:baselineAligned="false"-->
-  <!--      android:orientation="horizontal"-->
-  <!--      >-->
-  <!--    <LinearLayout-->
-  <!--        android:layout_width="wrap_content"-->
-  <!--        android:layout_height="wrap_content"-->
-  <!--        android:layout_weight="1"-->
-  <!--        android:orientation="vertical"-->
-  <!--        >-->
-  <!--      <TextView-->
-  <!--          android:layout_width="fill_parent"-->
-  <!--          android:layout_height="wrap_content"-->
-  <!--          android:gravity="center_horizontal"-->
-  <!--          android:text="Humidity"-->
-  <!--          android:textColor="#aaffffff"-->
-  <!--          android:textSize="@dimen/material_text_body1"-->
-  <!--          />-->
-  <!--      <TextView-->
-  <!--          android:id="@+id/humidity"-->
-  <!--          android:layout_width="fill_parent"-->
-  <!--          android:layout_height="wrap_content"-->
-  <!--          android:gravity="center_horizontal"-->
-  <!--          android:textColor="#ffffffff"-->
-  <!--          android:textSize="@dimen/material_text_title"-->
-  <!--          />-->
-  <!--    </LinearLayout>-->
-  <!--    <LinearLayout-->
-  <!--        android:layout_width="wrap_content"-->
-  <!--        android:layout_height="wrap_content"-->
-  <!--        android:layout_weight="1"-->
-  <!--        android:orientation="vertical"-->
-  <!--        >-->
-  <!--      <TextView-->
-  <!--          android:layout_width="fill_parent"-->
-  <!--          android:layout_height="wrap_content"-->
-  <!--          android:gravity="center_horizontal"-->
-  <!--          android:text="Pressure"-->
-  <!--          android:textColor="#aaffffff"-->
-  <!--          android:textSize="@dimen/material_text_body1"-->
-  <!--          />-->
-  <!--      <TextView-->
-  <!--          android:id="@+id/pressure"-->
-  <!--          android:layout_width="fill_parent"-->
-  <!--          android:layout_height="wrap_content"-->
-  <!--          android:gravity="center_horizontal"-->
-  <!--          android:textColor="#ffffffff"-->
-  <!--          android:textSize="@dimen/material_text_title"-->
-  <!--          />-->
-  <!--    </LinearLayout>-->
-  <!--    <LinearLayout-->
-  <!--        android:layout_width="wrap_content"-->
-  <!--        android:layout_height="wrap_content"-->
-  <!--        android:layout_weight="1"-->
-  <!--        android:orientation="vertical"-->
-  <!--        >-->
-  <!--      <TextView-->
-  <!--          android:layout_width="fill_parent"-->
-  <!--          android:layout_height="wrap_content"-->
-  <!--          android:gravity="center_horizontal"-->
-  <!--          android:text="Wind"-->
-  <!--          android:textColor="#aaffffff"-->
-  <!--          android:textSize="@dimen/material_text_body1"-->
-  <!--          />-->
-  <!--      <TextView-->
-  <!--          android:id="@+id/wind"-->
-  <!--          android:layout_width="fill_parent"-->
-  <!--          android:layout_height="wrap_content"-->
-  <!--          android:gravity="center_horizontal"-->
-  <!--          android:textColor="#ffffffff"-->
-  <!--          android:textSize="@dimen/material_text_title"-->
-  <!--          />-->
-  <!--    </LinearLayout>-->
-  <!--  </LinearLayout>-->
 
-  <!--    </LinearLayout>-->
-  <!--  </ScrollView>-->
-
-  <!--  <TextView-->
-  <!--      android:id="@+id/textview_first"-->
-  <!--      android:layout_width="wrap_content"-->
-  <!--      android:layout_height="wrap_content"-->
-  <!--      android:text="@string/hello_first_fragment"-->
-  <!--      app:layout_constraintBottom_toTopOf="@id/button_first"-->
-  <!--      app:layout_constraintEnd_toEndOf="parent"-->
-  <!--      app:layout_constraintStart_toStartOf="parent"-->
-  <!--      app:layout_constraintTop_toTopOf="parent"-->
-  <!--      />-->
-
-  <!--  <Button-->
-  <!--      android:id="@+id/button_first"-->
-  <!--      android:layout_width="wrap_content"-->
-  <!--      android:layout_height="wrap_content"-->
-  <!--      android:text="@string/next"-->
-  <!--      app:layout_constraintBottom_toBottomOf="parent"-->
-  <!--      app:layout_constraintEnd_toEndOf="parent"-->
-  <!--      app:layout_constraintStart_toStartOf="parent"-->
-  <!--      app:layout_constraintTop_toBottomOf="@id/textview_first"-->
-  <!--      />-->
 </androidx.constraintlayout.widget.ConstraintLayout>
