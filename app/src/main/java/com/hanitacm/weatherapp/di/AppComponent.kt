@@ -1,6 +1,7 @@
 package com.hanitacm.weatherapp.di
 
 import android.content.Context
+import com.hanitacm.weatherapp.presentation.screen.MapsActivity
 import com.hanitacm.weatherapp.presentation.screen.SearchableActivity
 import dagger.BindsInstance
 import dagger.Component
@@ -9,7 +10,8 @@ import javax.inject.Singleton
 @Singleton
 @Component(
     modules = [ViewModelBuilder::class,
-                NetworkModule::class])
+      NetworkModule::class,
+      LocationModule::class])
 interface AppComponent {
 
   @Component.Factory
@@ -18,4 +20,6 @@ interface AppComponent {
   }
 
   fun inject(activity: SearchableActivity)
+  fun inject(activity: MapsActivity)
+
 }
