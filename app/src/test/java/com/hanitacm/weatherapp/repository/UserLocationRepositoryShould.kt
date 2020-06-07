@@ -8,6 +8,7 @@ import com.google.android.gms.tasks.Task
 import com.hanitacm.weatherapp.repository.data.mapper.UserLocationDomainMapper
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doAnswer
+import com.nhaarman.mockitokotlin2.times
 import com.nhaarman.mockitokotlin2.whenever
 import org.junit.Before
 import org.junit.Test
@@ -53,16 +54,8 @@ internal class UserLocationRepositoryShould {
 
 
     whenever(fusedLocationProviderClient.lastLocation).thenReturn(mockTask)
-    `when location provider returns a valid location`(location)
+    `when location provider returns a response`(location)
     whenever(mapper.mapToDomainModel(location)).thenCallRealMethod()
-
-
-//    whenever(fusedLocationProviderClient.requestLocationUpdates(any(LocationRequest::class.java), any(LocationCallback::class.java), any(Looper::class.java)))
-//        .thenAnswer(Answer { invocation: InvocationOnMock? ->
-//          val listener: LocationCallback = invocation?.arguments?.get(1) as LocationCallback
-//
-//          listener.onLocationResult(LocationResult.create(locationList))
-//        })
 
 
     val locationResult = userLocationRepository.getUserLocation().test()
@@ -79,7 +72,24 @@ internal class UserLocationRepositoryShould {
 
   }
 
-  private fun `when location provider returns a valid location`(location: Location) {
+  @Test
+  fun `throws an exception when provider returns a null value as location`() {
+    whenever(fusedLocationProviderClient.lastLocation).thenReturn(mockTask)
+    `when location provider returns a response`(null)
+
+    val locationResult = userLocationRepository.getUserLocation().test()
+
+    locationResult.awaitTerminalEvent()
+    locationResult.assertError(IllegalStateException::class.java)
+
+
+    verify(fusedLocationProviderClient).lastLocation
+    verify(mapper, times(0))
+
+
+  }
+
+  private fun `when location provider returns a response`(location: Location?) {
     doAnswer { invocation: InvocationOnMock? ->
       val arguments = invocation?.arguments
       val listener = arguments?.get(0) as OnSuccessListener<Location>
