@@ -46,7 +46,7 @@ internal class UserLocationRepositoryShould {
   }
 
   @Test
-  fun `returns last valid location`() {
+  fun `return last valid location`() {
 
 
     val location = `given a location from gps`()
@@ -73,7 +73,7 @@ internal class UserLocationRepositoryShould {
   }
 
   @Test
-  fun `throws an exception when provider returns a null value as location`() {
+  fun `throw an exception when provider returns a null value as location`() {
     whenever(fusedLocationProviderClient.lastLocation).thenReturn(mockTask)
     `when location provider returns a response`(null)
 
