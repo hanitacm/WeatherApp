@@ -10,4 +10,8 @@ class GetWeatherUseCase @Inject constructor(private val weatherRepository: Weath
     return weatherRepository.getWeatherLocations(location)
   }
 
+  fun getWeather(location: UserLocationDomainModel): Single<List<WeatherDomainModel>> {
+    return weatherRepository.getWeather(location)
+  }
+
 }
