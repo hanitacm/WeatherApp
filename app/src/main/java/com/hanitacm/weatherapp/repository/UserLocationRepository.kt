@@ -1,5 +1,6 @@
 package com.hanitacm.weatherapp.repository
 
+import android.util.Log
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
@@ -16,6 +17,7 @@ class UserLocationRepository @Inject constructor(private val fusedLocationProvid
   fun getUserLocation(): Single<UserLocationDomainModel> {
     return Single.create { emitter ->
       fusedLocationProviderClient.lastLocation.addOnSuccessListener { taskLocation ->
+        Log.i("WHEATHER", "SuccessListener")
         if (taskLocation != null) {
           emitter.onSuccess(mapper.mapToDomainModel(taskLocation))
         } else {

@@ -26,13 +26,12 @@ class CurrentLocationWeatherViewModel @Inject constructor(private val getUserLoc
   fun getCurrentLocationWeather() {
     subscription.add(
         getUserLocationUseCase.getUserLocation()
+            .flatMap { location: UserLocationDomainModel -> getWeatherUseCase.getWeather(location).subscribeOn(Schedulers.io()) }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
-            .flatMap { location: UserLocationDomainModel -> getWeatherUseCase.getWeather(location) }
             .subscribe({ result -> processResponse(result) }
                 , { error -> showError(error) })
     )
-
   }
 
   private fun showError(error: Throwable?) {

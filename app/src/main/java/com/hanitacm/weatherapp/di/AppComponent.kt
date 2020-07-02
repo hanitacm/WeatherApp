@@ -1,6 +1,7 @@
 package com.hanitacm.weatherapp.di
 
 import android.content.Context
+import com.hanitacm.weatherapp.presentation.screen.FirstFragment
 import com.hanitacm.weatherapp.presentation.screen.MapsActivity
 import com.hanitacm.weatherapp.presentation.screen.SearchableActivity
 import dagger.BindsInstance
@@ -21,5 +22,6 @@ interface AppComponent {
 
   fun inject(activity: SearchableActivity)
   fun inject(activity: MapsActivity)
+  fun inject(fragment: FirstFragment)
 
 }
