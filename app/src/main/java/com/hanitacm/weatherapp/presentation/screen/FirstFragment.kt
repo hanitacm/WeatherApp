@@ -80,7 +80,6 @@ class FirstFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallb
 
 
   private fun processResponse(response: List<DisplayableWeather>?) {
-    TODO("Not yet implemented")
   }
 
   override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {

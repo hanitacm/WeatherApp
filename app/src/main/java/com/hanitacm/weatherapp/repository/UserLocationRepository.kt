@@ -1,6 +1,6 @@
 package com.hanitacm.weatherapp.repository
 
-import android.util.Log
+import android.annotation.SuppressLint
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
@@ -14,10 +14,10 @@ import javax.inject.Singleton
 @Singleton
 class UserLocationRepository @Inject constructor(private val fusedLocationProviderClient: FusedLocationProviderClient, private val mapper: UserLocationDomainMapper) {
 
+  @SuppressLint("MissingPermission")
   fun getUserLocation(): Single<UserLocationDomainModel> {
     return Single.create { emitter ->
       fusedLocationProviderClient.lastLocation.addOnSuccessListener { taskLocation ->
-        Log.i("WHEATHER", "SuccessListener")
         if (taskLocation != null) {
           emitter.onSuccess(mapper.mapToDomainModel(taskLocation))
         } else {
