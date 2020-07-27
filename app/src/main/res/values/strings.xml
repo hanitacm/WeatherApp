@@ -20,5 +20,7 @@
   <string name="humidity">Humidity</string>
   <string name="pressure">Pressure</string>
   <string name="wind">Wind</string>
+  <string name="rational_request_location_permission">Location permission is needed to show your position weather</string>
+  <string name="location_permission_denied">You can use the top bar to search a location manually</string>
 
 </resources>

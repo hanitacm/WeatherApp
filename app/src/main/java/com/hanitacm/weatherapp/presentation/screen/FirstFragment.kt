@@ -54,43 +54,45 @@ class FirstFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallb
   }
 
   private fun loadWeather() {
-    if (isLocationPermissionsAreGranted())
-      getWeatherInMyPosition()
-    else
-      requestLocationPermission()
+    when {
+      locationPermissionsAreGranted() -> getWeatherInMyPosition()
+      shouldRequestPermissionRationale() -> showUIExplanation(getString(R.string.rational_request_location_permission))
+      else -> requestLocationPermission()
+    }
   }
 
-  private fun isLocationPermissionsAreGranted(): Boolean {
-    return ContextCompat.checkSelfPermission(requireContext(),
-        Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
-        ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
-  }
+  private fun locationPermissionsAreGranted(): Boolean =
+      ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+          &&
+          ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
 
 
-  private fun getWeatherInMyPosition() {
-    currentLocationWeatherViewModel.getCurrentLocationWeather()
-  }
+  private fun getWeatherInMyPosition() = currentLocationWeatherViewModel.getCurrentLocationWeather()
+
+
+  private fun shouldRequestPermissionRationale(): Boolean = shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)
+
+  private fun showUIExplanation(text: String) = Toast.makeText(requireContext(), text, Toast.LENGTH_LONG).show()
 
   private fun requestLocationPermission() {
-    if (shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)) {
-      Toast.makeText(requireContext(), "Location permission is needed to show your position weather", Toast.LENGTH_LONG).show()
-    }
     requestPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), PERMISSION_REQUEST_LOCATION)
   }
+
 
   private fun processResponse(response: List<DisplayableWeather>?) {
     TODO("Not yet implemented")
   }
 
   override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-    if (requestCode == PERMISSION_REQUEST_LOCATION) {
-      if (grantResults.size == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-        getWeatherInMyPosition()
-      } else {
-        // Permission request was denied.
-        //layout.showSnackbar(R.string.camera_permission_denied, Snackbar.LENGTH_SHORT)
-      }
+    when (requestCode) {
+      PERMISSION_REQUEST_LOCATION ->
+        if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+          getWeatherInMyPosition()
+        } else {
+          showUIExplanation(getString(R.string.location_permission_denied))
+        }
     }
   }
-
 }
+
+
