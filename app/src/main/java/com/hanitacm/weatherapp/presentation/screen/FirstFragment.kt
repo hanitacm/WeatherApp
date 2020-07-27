@@ -17,6 +17,10 @@ import com.hanitacm.weatherapp.R
 import com.hanitacm.weatherapp.WeatherApplication
 import com.hanitacm.weatherapp.presentation.model.DisplayableWeather
 import com.hanitacm.weatherapp.presentation.viewmodel.CurrentLocationWeatherViewModel
+import kotlinx.android.synthetic.main.fragment_first.humidity
+import kotlinx.android.synthetic.main.fragment_first.locationName
+import kotlinx.android.synthetic.main.fragment_first.status
+import kotlinx.android.synthetic.main.fragment_first.temp
 import javax.inject.Inject
 
 const val PERMISSION_REQUEST_LOCATION = 0
@@ -80,6 +84,14 @@ class FirstFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallb
 
 
   private fun processResponse(response: List<DisplayableWeather>?) {
+    if (!response.isNullOrEmpty()) {
+      response.first().let {
+        locationName.text = it.location
+        temp.text = it.temperature
+        status.text = it.description
+        humidity.text = it.humidity.toString()
+      }
+    }
   }
 
   override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
