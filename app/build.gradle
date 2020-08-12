@@ -29,23 +29,22 @@ android {
     jvmTarget = "1.8"
   }
 
-  testOptions{
-    unitTests{
+  testOptions {
+    unitTests {
       returnDefaultValues = true
       includeAndroidResources = true
-
     }
   }
-
 }
 
 dependencies {
-  def lifecycle_version = "2.2.0"
-  def retrofit_version = '2.3.0'
   def coil_version = "0.8.0"
   def dagger_version = "2.25.2"
-  def support_version = '1.1.0'
+  def floating_search_bar = "2.1.1"
   def google_location_version = "17.0.0"
+  def lifecycle_version = "2.2.0"
+  def retrofit_version = '2.3.0'
+  def support_version = '1.1.0'
 
   implementation fileTree(include: ['*.jar'], dir: 'libs')
 
@@ -82,11 +81,16 @@ dependencies {
 
   /* Dagger2 - default dependency */
   implementation "com.google.dagger:dagger:$dagger_version"
+  kapt "com.google.dagger:dagger-compiler:$dagger_version"
+
   implementation 'androidx.appcompat:appcompat:1.1.0'
   implementation 'com.google.android.material:material:1.1.0'
   implementation 'androidx.navigation:navigation-fragment-ktx:2.0.0'
   implementation 'androidx.navigation:navigation-ui-ktx:2.0.0'
-  kapt "com.google.dagger:dagger-compiler:$dagger_version"
+
+
+  /* Floating search view */
+  implementation "com.github.arimorty:floatingsearchview:$floating_search_bar"
 
   testImplementation 'junit:junit:4.12'
   testImplementation 'org.mockito:mockito-core:2.16.0'
