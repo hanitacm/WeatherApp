@@ -11,46 +11,63 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".presentation.screen.FirstFragment"
     >
-
-
   <TextView
       android:id="@+id/locationName"
-      android:layout_width="fill_parent"
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginTop="40dp"
-      android:gravity="center_horizontal"
+      android:drawableStart="@android:drawable/ic_menu_mylocation"
+      android:drawablePadding="8dp"
+      android:padding="8dp"
       android:textColor="@android:color/white"
-      android:textSize="@dimen/display2"
+      android:textSize="24sp"
       android:textStyle="bold"
-      app:layout_constraintBottom_toTopOf="@id/temp"
-      app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
       />
   <TextView
-      android:id="@+id/temp"
-      android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="40dp"
-      android:layout_marginBottom="40dp"
-      android:gravity="center_horizontal"
-      android:textColor="#ffffffff"
-      android:textSize="@dimen/display2"
-      app:layout_constraintBottom_toTopOf="@id/status"
-      app:layout_constraintEnd_toEndOf="parent"
+      android:id="@+id/date"
+      android:layout_width="45dp"
+      android:layout_height="29dp"
+      android:textColor="@android:color/white"
+      android:textSize="18sp"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@id/locationName"
+      />
+
+
+  <TextView
+      android:id="@+id/temp"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="40dp"
+      android:textColor="#ffffffff"
+      android:textSize="@dimen/display2"
+      app:layout_constraintBottom_toBottomOf="@+id/weather_icon"
+      app:layout_constraintEnd_toStartOf="@id/weather_icon"
+      app:layout_constraintHorizontal_bias="0.5"
+      app:layout_constraintHorizontal_chainStyle="spread"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="@+id/weather_icon"
+      />
+  <ImageView
+      android:id="@+id/weather_icon"
+      android:layout_width="174dp"
+      android:layout_height="174dp"
+      app:layout_constraintBottom_toTopOf="@+id/meteo_data"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.5"
+      app:layout_constraintStart_toEndOf="@id/temp"
+      app:layout_constraintTop_toTopOf="parent"
       />
   <TextView
       android:id="@+id/status"
       style="@style/Header"
-      android:layout_width="fill_parent"
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:gravity="center_horizontal"
-      app:layout_constraintBottom_toTopOf="@id/meteo_data"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/temp"
+      android:textSize="14sp"
+      app:layout_constraintEnd_toEndOf="@id/weather_icon"
+      app:layout_constraintStart_toStartOf="@id/weather_icon"
+      app:layout_constraintTop_toBottomOf="@id/weather_icon"
       />
   <TableLayout
       android:id="@+id/meteo_data"
@@ -59,7 +76,6 @@
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/status"
       >
 
     <TableRow
@@ -129,6 +145,5 @@
     </TableRow>
 
   </TableLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

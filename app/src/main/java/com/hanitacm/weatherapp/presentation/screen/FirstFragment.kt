@@ -13,14 +13,20 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import coil.api.load
 import com.hanitacm.weatherapp.R
 import com.hanitacm.weatherapp.WeatherApplication
 import com.hanitacm.weatherapp.presentation.model.DisplayableWeather
 import com.hanitacm.weatherapp.presentation.viewmodel.CurrentLocationWeatherViewModel
+import kotlinx.android.synthetic.main.fragment_first.date
 import kotlinx.android.synthetic.main.fragment_first.humidity
 import kotlinx.android.synthetic.main.fragment_first.locationName
+import kotlinx.android.synthetic.main.fragment_first.pressure
 import kotlinx.android.synthetic.main.fragment_first.status
 import kotlinx.android.synthetic.main.fragment_first.temp
+import kotlinx.android.synthetic.main.fragment_first.weather_icon
+import kotlinx.android.synthetic.main.fragment_first.wind
+import java.util.Date
 import javax.inject.Inject
 
 const val PERMISSION_REQUEST_LOCATION = 0
@@ -87,9 +93,13 @@ class FirstFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallb
     if (!response.isNullOrEmpty()) {
       response.first().let {
         locationName.text = it.location
-        temp.text = it.temperature
+        date.text = String.format("%tr, %<tA, %<tB %<td, %<tY", Date())
+        temp.text = getString(R.string.temperature_celsius, it.temperature)
         status.text = it.description
         humidity.text = it.humidity.toString()
+        weather_icon.load(it.icon)
+        wind.text = it.wind
+        pressure.text = it.pressure
       }
     }
   }

@@ -25,7 +25,7 @@ class WeatherDataDomainMapper @Inject constructor() {
           , data.wind.speed
           , data.clouds.all
           , data.main.pressure
-          ,data.weather[0].icon)
+          , "http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png")
 
   fun mapLocationsDataToDomainModel(data: WeatherLocationData): List<WeatherDomainModel> {
     return if (data.count > 0) data.list.map { mapWeatherToDomainModel(it) }
