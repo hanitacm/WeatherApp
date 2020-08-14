@@ -25,7 +25,6 @@ import com.hanitacm.weatherapp.presentation.viewmodel.CurrentLocationWeatherView
 import kotlinx.android.synthetic.main.fragment_first.date
 import kotlinx.android.synthetic.main.fragment_first.floating_search_view
 import kotlinx.android.synthetic.main.fragment_first.humidity
-import kotlinx.android.synthetic.main.fragment_first.locationName
 import kotlinx.android.synthetic.main.fragment_first.pressure
 import kotlinx.android.synthetic.main.fragment_first.status
 import kotlinx.android.synthetic.main.fragment_first.temp
@@ -84,6 +83,7 @@ class FirstFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallb
   }
 
   private fun setupFloatingSearchView() {
+
     floating_search_view.setOnQueryChangeListener { oldQuery, newQuery ->
       if (oldQuery.isBlank() && newQuery.isBlank()) {
         floating_search_view.clearSuggestions()
@@ -92,7 +92,7 @@ class FirstFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallb
       }
     }
 
-    floating_search_view.setOnBindSuggestionCallback { suggestionView, leftIcon, textView, item, itemPosition ->
+    floating_search_view.setOnBindSuggestionCallback { _, leftIcon, textView, item, _ ->
       val suggestion: WeatherSuggestion = item as WeatherSuggestion
 
       leftIcon.load(suggestion.icon)
@@ -149,7 +149,7 @@ class FirstFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallb
     floating_search_view.clearSuggestions()
     if (!response.isNullOrEmpty()) {
       response.first().let {
-        locationName.text = it.location
+        floating_search_view.setSearchBarTitle(it.location)
         date.text = String.format("%tr, %<tA, %<tB %<td, %<tY", Date())
         temp.text = getString(R.string.temperature_celsius, it.temperature)
         status.text = it.description
