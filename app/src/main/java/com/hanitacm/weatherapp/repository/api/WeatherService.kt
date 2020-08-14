@@ -9,10 +9,10 @@ import retrofit2.http.Query
 
 interface WeatherService {
 
-  @GET("weather")
+  @GET("weather?units=metric")
   fun getWeatherData(@Query("APPID") api_key: String, @Query("q") location: String): Single<WeatherData>
 
-  @GET("find?type=like&sort=population&cnt=30")
+  @GET("find?type=like&sort=population&cnt=30&units=metric")
   fun getWeatherLocation(@Query("APPID") api_key: String, @Query("q") location: String):Single<WeatherLocationData>
 
   @GET("weather?units=metric")

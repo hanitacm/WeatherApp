@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,11 +15,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import coil.api.load
+import com.arlib.floatingsearchview.FloatingSearchView
+import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion
 import com.hanitacm.weatherapp.R
 import com.hanitacm.weatherapp.WeatherApplication
 import com.hanitacm.weatherapp.presentation.model.DisplayableWeather
+import com.hanitacm.weatherapp.presentation.model.WeatherSuggestion
 import com.hanitacm.weatherapp.presentation.viewmodel.CurrentLocationWeatherViewModel
 import kotlinx.android.synthetic.main.fragment_first.date
+import kotlinx.android.synthetic.main.fragment_first.floating_search_view
 import kotlinx.android.synthetic.main.fragment_first.humidity
 import kotlinx.android.synthetic.main.fragment_first.locationName
 import kotlinx.android.synthetic.main.fragment_first.pressure
@@ -28,6 +33,7 @@ import kotlinx.android.synthetic.main.fragment_first.weather_icon
 import kotlinx.android.synthetic.main.fragment_first.wind
 import java.util.Date
 import javax.inject.Inject
+
 
 const val PERMISSION_REQUEST_LOCATION = 0
 
@@ -54,14 +60,64 @@ class FirstFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallb
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    currentLocationWeatherViewModel = ViewModelProvider(this, viewModelFactory)[CurrentLocationWeatherViewModel::class.java]
 
-    currentLocationWeatherViewModel.getWeather.observe(viewLifecycleOwner,
-        Observer { response -> processResponse(response) })
+    setViewModel()
+
+    setupObservers()
+    setupFloatingSearchView()
+
     loadWeather()
 
-
   }
+
+  private fun setViewModel() {
+    currentLocationWeatherViewModel = ViewModelProvider(this, viewModelFactory)[CurrentLocationWeatherViewModel::class.java]
+  }
+
+  private fun setupObservers() {
+    currentLocationWeatherViewModel.getWeather.observe(viewLifecycleOwner,
+        Observer { response -> processResponse(response) })
+
+
+    currentLocationWeatherViewModel.getWeatherSuggestions.observe(viewLifecycleOwner,
+        Observer { suggestions -> showSuggestions(suggestions) })
+  }
+
+  private fun setupFloatingSearchView() {
+    floating_search_view.setOnQueryChangeListener { oldQuery, newQuery ->
+      if (oldQuery.isBlank() && newQuery.isBlank()) {
+        floating_search_view.clearSuggestions()
+      } else {
+        currentLocationWeatherViewModel.loadLocationSuggestions(newQuery)
+      }
+    }
+
+    floating_search_view.setOnBindSuggestionCallback { suggestionView, leftIcon, textView, item, itemPosition ->
+      val suggestion: WeatherSuggestion = item as WeatherSuggestion
+
+      leftIcon.load(suggestion.icon)
+      textView.text = (Html.fromHtml("${suggestion.location}<br/> ${suggestion.temperature}ºC"))
+    }
+
+    floating_search_view.setOnSearchListener(object : FloatingSearchView.OnSearchListener {
+      override fun onSearchAction(currentQuery: String?) {
+      }
+
+      override fun onSuggestionClicked(searchSuggestion: SearchSuggestion?) {
+        searchSuggestion?.let {
+          it as WeatherSuggestion
+          currentLocationWeatherViewModel.getWeather(it.latitude, it.longitude)
+        }
+      }
+    })
+  }
+
+  private fun showSuggestions(suggestions: List<WeatherSuggestion>?) {
+    if (!suggestions.isNullOrEmpty()) {
+      floating_search_view.swapSuggestions(suggestions)
+    }
+  }
+
 
   private fun loadWeather() {
     when {
@@ -90,6 +146,7 @@ class FirstFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallb
 
 
   private fun processResponse(response: List<DisplayableWeather>?) {
+    floating_search_view.clearSuggestions()
     if (!response.isNullOrEmpty()) {
       response.first().let {
         locationName.text = it.location
