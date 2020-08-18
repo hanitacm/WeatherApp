@@ -38,7 +38,7 @@ class CurrentLocationWeatherViewModel @Inject constructor(private val getUserLoc
   }
 
   fun loadLocationSuggestions(location: String) {
-    if (location.isNotBlank()) {
+    if (location.isNotBlank() && location.length > 2) {
 
       subscription.add(getWeatherUseCase.getWeather(location)
           .observeOn(AndroidSchedulers.mainThread())
