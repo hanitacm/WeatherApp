@@ -21,11 +21,13 @@ import com.hanitacm.weatherapp.R
 import com.hanitacm.weatherapp.WeatherApplication
 import com.hanitacm.weatherapp.presentation.model.DisplayableWeather
 import com.hanitacm.weatherapp.presentation.model.WeatherSuggestion
+import com.hanitacm.weatherapp.presentation.viewmodel.CurrentLocationWeatherState
 import com.hanitacm.weatherapp.presentation.viewmodel.CurrentLocationWeatherViewModel
 import kotlinx.android.synthetic.main.fragment_first.date
 import kotlinx.android.synthetic.main.fragment_first.floating_search_view
 import kotlinx.android.synthetic.main.fragment_first.humidity
 import kotlinx.android.synthetic.main.fragment_first.pressure
+import kotlinx.android.synthetic.main.fragment_first.progressBar
 import kotlinx.android.synthetic.main.fragment_first.status
 import kotlinx.android.synthetic.main.fragment_first.temp
 import kotlinx.android.synthetic.main.fragment_first.weather_icon
@@ -74,13 +76,23 @@ class FirstFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallb
   }
 
   private fun setupObservers() {
-    currentLocationWeatherViewModel.getWeather.observe(viewLifecycleOwner,
-        Observer { response -> processResponse(response) })
 
-
-    currentLocationWeatherViewModel.getWeatherSuggestions.observe(viewLifecycleOwner,
-        Observer { suggestions -> showSuggestions(suggestions) })
+    currentLocationWeatherViewModel.viewState.observe(viewLifecycleOwner,
+        Observer {
+          when (it) {
+            CurrentLocationWeatherState.Loading -> progressBar.visibility = View.VISIBLE
+            is CurrentLocationWeatherState.LocationSuggestionsLoaded -> showSuggestions(it.weatherSuggestions)
+            is CurrentLocationWeatherState.WeatherLoaded -> processResponse(it.weather)
+            is CurrentLocationWeatherState.WeatherLoadFailure -> showError(it.errorMessage)
+          }
+        })
   }
+
+  private fun showError(errorMessage: String) {
+    progressBar.visibility = View.GONE
+    Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_LONG).show()
+  }
+
 
   private fun setupFloatingSearchView() {
 
@@ -118,7 +130,6 @@ class FirstFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallb
     }
   }
 
-
   private fun loadWeather() {
     when {
       locationPermissionsAreGranted() -> getWeatherInMyPosition()
@@ -147,6 +158,7 @@ class FirstFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallb
 
   private fun processResponse(response: List<DisplayableWeather>?) {
     floating_search_view.clearSuggestions()
+    progressBar.visibility = View.GONE
     if (!response.isNullOrEmpty()) {
       response.first().let {
         floating_search_view.setSearchBarTitle(it.location)
