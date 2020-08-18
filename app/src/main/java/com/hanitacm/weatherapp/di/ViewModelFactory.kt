@@ -2,6 +2,7 @@ package com.hanitacm.weatherapp.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.hanitacm.weatherapp.presentation.viewmodel.CurrentLocationWeatherViewModel
 import com.hanitacm.weatherapp.presentation.viewmodel.WeatherViewModel
 import dagger.Binds
 import dagger.MapKey
@@ -38,6 +39,11 @@ abstract class ViewModelBuilder {
   @IntoMap
   @ViewModelKey(WeatherViewModel::class)
   abstract fun bindWeatherViewModel(weatherViewModel: WeatherViewModel): ViewModel
+
+  @Binds
+  @IntoMap
+  @ViewModelKey(CurrentLocationWeatherViewModel::class)
+  abstract fun bindCurrentLocationWeatherViewModel(currentLocationWeatherViewModel: CurrentLocationWeatherViewModel): ViewModel
 
   @Binds
   abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory

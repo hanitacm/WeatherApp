@@ -1,5 +1,6 @@
 package com.hanitacm.weatherapp.repository
 
+import com.hanitacm.weatherapp.domain.UserLocationDomainModel
 import com.hanitacm.weatherapp.domain.WeatherDomainModel
 import com.hanitacm.weatherapp.repository.api.WeatherApi
 import com.hanitacm.weatherapp.repository.data.mapper.WeatherDataDomainMapper
@@ -13,8 +14,12 @@ class WeatherRepository @Inject constructor(private val weatherApi: WeatherApi, 
     return weatherApi.getWeather(location).map { mapper.mapToDomainModel(it) }
   }
 
-  fun getWeatherLocations(location: String) : Single<List<WeatherDomainModel>>{
-    return weatherApi.getWeatherLocations(location).map{
+  fun getWeather(location: UserLocationDomainModel): Single<List<WeatherDomainModel>> {
+    return weatherApi.getWeather(location.latitude.toString(), location.longitude.toString()).map { mapper.mapToDomainModel(it) }
+  }
+
+  fun getWeatherLocations(location: String): Single<List<WeatherDomainModel>> {
+    return weatherApi.getWeatherLocations(location).map {
       mapper.mapLocationsDataToDomainModel(it)
     }
   }

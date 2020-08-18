@@ -13,6 +13,7 @@ class WeatherApi @Inject constructor(private val weatherService: WeatherService)
 
   fun getWeather(location: String): Single<WeatherData> = weatherService.getWeatherData(apiKey, location)
 
+  fun getWeather(latitude: String, longitude: String): Single<WeatherData> = weatherService.getWeatherData(apiKey, latitude, longitude)
 
   fun getWeatherLocations(location: String): Single<WeatherLocationData> = weatherService.getWeatherLocation(apiKey, location)
 
