@@ -150,7 +150,7 @@ class FirstFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallb
     if (!response.isNullOrEmpty()) {
       response.first().let {
         floating_search_view.setSearchBarTitle(it.location)
-        date.text = String.format("%tr, %<tA, %<tB %<td, %<tY", Date())
+        date.text = String.format("%tA %<tB %<td %<tr", Date())
         temp.text = getString(R.string.temperature_celsius, it.temperature)
         status.text = it.description
         humidity.text = it.humidity.toString()
