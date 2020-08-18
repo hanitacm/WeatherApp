@@ -86,13 +86,6 @@ class FirstFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallb
             is CurrentLocationWeatherState.WeatherLoadFailure -> showError(it.errorMessage)
           }
         })
-
-    //currentLocationWeatherViewModel.getWeather.observe(viewLifecycleOwner,
-    //    Observer { response -> processResponse(response) })
-
-
-    //currentLocationWeatherViewModel.getWeatherSuggestions.observe(viewLifecycleOwner,
-    //    Observer { suggestions -> showSuggestions(suggestions) })
   }
 
   private fun showError(errorMessage: String) {
@@ -136,7 +129,6 @@ class FirstFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallb
       floating_search_view.swapSuggestions(suggestions)
     }
   }
-
 
   private fun loadWeather() {
     when {
