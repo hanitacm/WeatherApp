@@ -64,23 +64,23 @@ internal class CurrentLocationWeatherViewModelShould {
 
   @Test
   fun `get current location weather`() {
-    val weatherDomainModel = validWeather()
+    val weatherDomainModel = validWeather
 
-    whenever(getUserLocationUseCase.getUserLocation()).thenReturn(Single.just(validLocation()))
-    whenever(getWeatherUseCase.getWeather(validLocation())).thenReturn(Single.just(weatherDomainModel))
+    whenever(getUserLocationUseCase.getUserLocation()).thenReturn(Single.just(validLocation))
+    whenever(getWeatherUseCase.getWeather(validLocation)).thenReturn(Single.just(weatherDomainModel))
 
     currentLocationWeatherViewModel.getCurrentLocationWeather()
 
     verify(mapper).mapToView(weatherDomainModel)
     verify(observer).onChanged(CurrentLocationWeatherState.Loading)
-    verify(observer).onChanged(CurrentLocationWeatherState.WeatherLoaded(validDisplayableWeather()))
+    verify(observer).onChanged(CurrentLocationWeatherState.WeatherLoaded(validDisplayableWeather))
 
   }
 
   @Test
   fun `load location suggestions`() {
     val location = "Barcelona"
-    val weatherDomainModel = validWeather()
+    val weatherDomainModel = validWeather
 
 
     whenever(getWeatherUseCase.getWeather(location)).thenReturn(Single.just(weatherDomainModel))
@@ -89,7 +89,7 @@ internal class CurrentLocationWeatherViewModelShould {
     currentLocationWeatherViewModel.loadLocationSuggestions(location)
 
     verify(mapperSuggestion).mapToView(weatherDomainModel)
-    verify(observer).onChanged(CurrentLocationWeatherState.LocationSuggestionsLoaded(validSuggestions()))
+    verify(observer).onChanged(CurrentLocationWeatherState.LocationSuggestionsLoaded(validSuggestions))
   }
 
   @Test
@@ -102,32 +102,15 @@ internal class CurrentLocationWeatherViewModelShould {
 
   }
 
-  //  @Test
-//  fun `show error message if it cannot get weather`() {
-//    val errorMessage = "error"
-//    whenever(getUserLocationUseCase.getUserLocation()).thenThrow(Throwable(errorMessage))
-//
-//    verify(observer).onChanged(CurrentLocationWeatherState.WeatherLoadFailure(errorMessage))
-//    verify(observer, never()).onChanged(CurrentLocationWeatherState.WeatherLoaded(validDisplayableWeather()))
-//
-//  }
-  private fun validSuggestions(): List<WeatherSuggestion> {
-    return listOf(WeatherSuggestion(icon = "04n",
-        location = "Bunbury, AU",
-        temperature = "11",
-        latitude = 4.0,
-        longitude = 3.0))
-  }
 
-  private fun validDisplayableWeather(): List<DisplayableWeather> {
-    return listOf(DisplayableWeather("Bunbury, AU", "Clouds", "11", "11.11", "11.11", "54%", "04n", "1012hPa", "4.46m/s")
-    )
-  }
+  private val validSuggestions = listOf(WeatherSuggestion(icon = "04n",
+      location = "Bunbury, AU",
+      temperature = "11",
+      latitude = 4.0,
+      longitude = 3.0))
 
-  private fun validWeather(): List<WeatherDomainModel> {
-    return listOf(WeatherDomainModel(Coordinates(3.0, 4.0), "Bunbury", "AU", "Clouds", Temperature(11.11, 11.11, 11.11), 54, 4.46, 77, 1012, "04n")
-    )
-  }
 
-  private fun validLocation() = UserLocationDomainModel(4.0, 3.0)
+  private val validDisplayableWeather = listOf(DisplayableWeather("Bunbury, AU", "Clouds", "11", "11.11", "11.11", "54%", "04n", "1012hPa", "4.46m/s"))
+  private val validWeather = listOf(WeatherDomainModel(Coordinates(3.0, 4.0), "Bunbury", "AU", "Clouds", Temperature(11.11, 11.11, 11.11), 54, 4.46, 77, 1012, "04n"))
+  private val validLocation = UserLocationDomainModel(4.0, 3.0)
 }
