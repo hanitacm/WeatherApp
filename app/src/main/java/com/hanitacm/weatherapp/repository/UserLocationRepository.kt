@@ -2,13 +2,13 @@ package com.hanitacm.weatherapp.repository
 
 import com.hanitacm.weatherapp.domain.UserLocationDomainModel
 import com.hanitacm.weatherapp.repository.data.mapper.UserLocationDomainMapper
-import com.hanitacm.weatherapp.repository.provider.LocationGoogleServiceProvider
+import com.hanitacm.weatherapp.repository.provider.LocationProvider
 import io.reactivex.Single
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class UserLocationRepository @Inject constructor(private val locationProvider: LocationGoogleServiceProvider, private val mapper: UserLocationDomainMapper) {
+class UserLocationRepository @Inject constructor(private val locationProvider: LocationProvider, private val mapper: UserLocationDomainMapper) {
 
   fun getUserLocation(): Single<UserLocationDomainModel> {
 

@@ -3,12 +3,14 @@ package com.hanitacm.weatherapp.repository.provider
 import android.annotation.SuppressLint
 import android.location.Location
 import com.google.android.gms.location.FusedLocationProviderClient
+import com.hanitacm.weatherapp.OpenClassOnDebug
 import io.reactivex.Single
 import javax.inject.Inject
 
-class LocationGoogleServiceProvider @Inject constructor(private val fusedLocationProviderClient: FusedLocationProviderClient) {
+@OpenClassOnDebug
+class LocationGoogleServiceProvider @Inject constructor(private val fusedLocationProviderClient: FusedLocationProviderClient) : LocationProvider {
   @SuppressLint("MissingPermission")
-  fun requestLocation(): Single<Location> {
+  override fun requestLocation(): Single<Location> {
     return Single.create { emitter ->
 
       fusedLocationProviderClient.lastLocation
