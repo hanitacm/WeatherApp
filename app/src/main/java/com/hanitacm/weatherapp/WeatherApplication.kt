@@ -4,7 +4,9 @@ import android.app.Application
 import com.hanitacm.weatherapp.di.AppComponent
 import com.hanitacm.weatherapp.di.DaggerAppComponent
 
-class WeatherApplication : Application() {
+open class WeatherApplication : Application() {
 
-  val mainComponent: AppComponent by lazy { DaggerAppComponent.factory().create(applicationContext) }
+  val mainComponent: AppComponent by lazy { initializeAppComponent() }
+
+  open fun initializeAppComponent() = DaggerAppComponent.factory().create(applicationContext)
 }

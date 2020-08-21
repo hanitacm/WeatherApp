@@ -11,7 +11,7 @@ android {
     targetSdkVersion 29
     versionCode 1
     versionName "1.0"
-    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    testInstrumentationRunner "com.hanitacm.weatherapp.CustomTestRunner"
   }
   buildTypes {
     release {
@@ -47,6 +47,8 @@ dependencies {
   def retrofit_version = '2.3.0'
   def support_version = '1.2.0'
   def core_testing_version = '2.1.0'
+  def espresso_version = '3.2.0'
+
 
   implementation fileTree(include: ['*.jar'], dir: 'libs')
 
@@ -106,6 +108,8 @@ dependencies {
 
   testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.0.3'
   androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-  androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+  androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
+  androidTestImplementation 'androidx.test:rules:1.2.0'
 
+  kaptAndroidTest "com.google.dagger:dagger-compiler:$dagger_version"
 }
