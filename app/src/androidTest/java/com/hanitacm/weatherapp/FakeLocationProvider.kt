@@ -4,6 +4,7 @@ import android.location.Location
 import com.hanitacm.weatherapp.repository.provider.LocationProvider
 import io.reactivex.Single
 
+@OpenClassOnDebug
 class FakeLocationProvider : LocationProvider {
   override fun requestLocation(): Single<Location> {
     return Single.just(Location("test_provider").apply {
