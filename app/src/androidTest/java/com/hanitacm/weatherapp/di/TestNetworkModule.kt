@@ -1,9 +1,7 @@
 package com.hanitacm.weatherapp.di
 
-import androidx.test.espresso.IdlingResource
 import com.hanitacm.weatherapp.BuildConfig
 import com.hanitacm.weatherapp.repository.api.WeatherService
-import com.jakewharton.espresso.OkHttp3IdlingResource
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -29,7 +27,6 @@ class TestNetworkModule {
   fun provideOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient =
       OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build()
 
-
   @Singleton
   @Provides
   fun provideRetrofit(client: OkHttpClient): Retrofit {
@@ -45,11 +42,6 @@ class TestNetworkModule {
   @Singleton
   @Provides
   fun provideWeatherService(retrofit: Retrofit): WeatherService = retrofit.create(WeatherService::class.java)
-
-  @Singleton
-  @Provides
-  fun providesIdlingResource(okHttpClient: OkHttpClient): IdlingResource = OkHttp3IdlingResource.create("okhttp", okHttpClient)
-
 
 }
 

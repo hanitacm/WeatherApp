@@ -1,7 +1,6 @@
 package com.hanitacm.weatherapp.di
 
-import androidx.test.espresso.IdlingResource
-import com.hanitacm.weatherapp.ExampleInstrumentedTest
+import com.hanitacm.weatherapp.WeatherMainFragmentShould
 import dagger.Component
 import okhttp3.OkHttpClient
 import javax.inject.Singleton
@@ -13,7 +12,6 @@ import javax.inject.Singleton
   TestLocationModule::class])
 interface TestAppComponent : AppComponent {
 
-  fun inject(firstFragmentTest: ExampleInstrumentedTest)
+  fun inject(weatherMainFragment: WeatherMainFragmentShould)
   fun okHttpClient(): OkHttpClient
-  fun idlingResource(): IdlingResource
 }

@@ -48,6 +48,8 @@ android {
       returnDefaultValues = true
       includeAndroidResources = true
     }
+
+    animationsDisabled = true
   }
 }
 
@@ -63,7 +65,6 @@ dependencies {
   def core_testing_version = '2.1.0'
   def espresso_version = '3.2.0'
   def mockwebserver_version = '4.8.1'
-
 
   implementation fileTree(include: ['*.jar'], dir: 'libs')
 
@@ -127,7 +128,6 @@ dependencies {
   androidTestImplementation "com.squareup.okhttp3:mockwebserver:$mockwebserver_version"
   androidTestImplementation 'org.mockito:mockito-android:2.7.15'
   androidTestImplementation 'com.jakewharton.espresso:okhttp3-idling-resource:1.0.0'
-
 
   kaptAndroidTest "com.google.dagger:dagger-compiler:$dagger_version"
 }
