@@ -5,6 +5,8 @@ import android.os.Build
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.gms.tasks.Task
+import com.hanitacm.weatherapp.repository.datasource.exceptions.NoLocationAvailableException
+import com.hanitacm.weatherapp.repository.datasource.provider.LocationGoogleServiceProvider
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doAnswer
 import com.nhaarman.mockitokotlin2.whenever
@@ -42,12 +44,12 @@ internal class LocationGoogleServiceProviderShould {
   fun `return last valid location`() {
 
 
-    val location = `given a location from gps`()
+    val location = givenALocationFromGPS()
 
 
 
     whenever(fusedLocationProviderClient.lastLocation).thenReturn(mockTask)
-    `when location provider returns a response`(location)
+    whenLocationProvideReturnsAResponse(location)
 
 
     val locationResult = locationGoogleServiceProvider.requestLocation().test()
@@ -66,12 +68,12 @@ internal class LocationGoogleServiceProviderShould {
   @Test
   fun `throw an exception when provider returns a null value as location`() {
     whenever(fusedLocationProviderClient.lastLocation).thenReturn(mockTask)
-    `when location provider returns a response`(null)
+    whenLocationProvideReturnsAResponse(null)
 
     val locationResult = locationGoogleServiceProvider.requestLocation().test()
 
     locationResult.awaitTerminalEvent()
-    locationResult.assertError(IllegalStateException::class.java)
+    locationResult.assertError(NoLocationAvailableException::class.java)
 
 
     verify(fusedLocationProviderClient).lastLocation
@@ -79,7 +81,7 @@ internal class LocationGoogleServiceProviderShould {
 
   }
 
-  private fun `when location provider returns a response`(location: Location?) {
+  private fun whenLocationProvideReturnsAResponse(location: Location?) {
     doAnswer { invocation: InvocationOnMock? ->
       val arguments = invocation?.arguments
       val listener = arguments?.get(0) as OnSuccessListener<Location>
@@ -88,7 +90,7 @@ internal class LocationGoogleServiceProviderShould {
     }.`when`(mockTask).addOnSuccessListener(any())
   }
 
-  private fun `given a location from gps`(): Location = Location("test_provider").apply {
+  private fun givenALocationFromGPS(): Location = Location("test_provider").apply {
     latitude = 40.0
     longitude = 3.0
     time = System.currentTimeMillis()
