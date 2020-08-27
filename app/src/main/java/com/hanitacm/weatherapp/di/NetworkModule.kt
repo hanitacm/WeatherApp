@@ -1,5 +1,7 @@
 package com.hanitacm.weatherapp.di
 
+import android.content.Context
+import android.net.ConnectivityManager
 import com.hanitacm.weatherapp.BuildConfig
 import com.hanitacm.weatherapp.repository.datasource.api.WeatherService
 import dagger.Module
@@ -41,5 +43,8 @@ class NetworkModule {
   @Provides
   fun provideWeatherService(retrofit: Retrofit): WeatherService = retrofit.create(WeatherService::class.java)
 
+  @Singleton
+  @Provides
+  fun provideConnectivityService(context: Context): ConnectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
 }

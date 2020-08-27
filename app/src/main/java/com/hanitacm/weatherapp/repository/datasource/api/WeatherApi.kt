@@ -2,20 +2,31 @@ package com.hanitacm.weatherapp.repository.datasource.api
 
 import com.hanitacm.weatherapp.repository.data.WeatherData
 import com.hanitacm.weatherapp.repository.data.WeatherLocationData
+import com.hanitacm.weatherapp.repository.datasource.api.exception.NoNetworkConnectionThrowable
 import io.reactivex.Single
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class WeatherApi @Inject constructor(private val weatherService: WeatherService) {
+class WeatherApi @Inject constructor(private val weatherService: WeatherService, private val networkUtils: NetworkUtils) {
   private val apiKey = "f33ec8d7f07ee949745b53d8474dbeb2"
 
+  fun getWeather(latitude: String, longitude: String): Single<WeatherData> {
 
-  fun getWeather(location: String): Single<WeatherData> = weatherService.getWeatherData(apiKey, location)
+    return if (networkUtils.isOnline()) {
+      weatherService.getWeatherData(apiKey, latitude, longitude)
+    } else {
+      Single.error(NoNetworkConnectionThrowable())
+    }
+  }
 
-  fun getWeather(latitude: String, longitude: String): Single<WeatherData> = weatherService.getWeatherData(apiKey, latitude, longitude)
-
-  fun getWeatherLocations(location: String): Single<WeatherLocationData> = weatherService.getWeatherLocation(apiKey, location)
+  fun getWeatherLocations(location: String): Single<WeatherLocationData> {
+    return if (networkUtils.isOnline()) {
+      weatherService.getWeatherLocation(apiKey, location)
+    } else {
+      Single.error(NoNetworkConnectionThrowable())
+    }
+  }
 
 
 }
