@@ -2,7 +2,7 @@ package com.hanitacm.weatherapp.repository
 
 import android.location.Location
 import com.hanitacm.weatherapp.repository.data.mapper.UserLocationDomainMapper
-import com.hanitacm.weatherapp.repository.provider.LocationGoogleServiceProvider
+import com.hanitacm.weatherapp.repository.datasource.provider.LocationGoogleServiceProvider
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.never
 import com.nhaarman.mockitokotlin2.verify

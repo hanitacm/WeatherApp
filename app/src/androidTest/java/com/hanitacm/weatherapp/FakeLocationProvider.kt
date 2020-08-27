@@ -1,7 +1,7 @@
 package com.hanitacm.weatherapp
 
 import android.location.Location
-import com.hanitacm.weatherapp.repository.provider.LocationProvider
+import com.hanitacm.weatherapp.repository.datasource.provider.LocationProvider
 import io.reactivex.Single
 
 @OpenClassOnDebug

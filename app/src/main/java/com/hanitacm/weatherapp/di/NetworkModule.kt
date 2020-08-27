@@ -1,7 +1,7 @@
 package com.hanitacm.weatherapp.di
 
 import com.hanitacm.weatherapp.BuildConfig
-import com.hanitacm.weatherapp.repository.api.WeatherService
+import com.hanitacm.weatherapp.repository.datasource.api.WeatherService
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient

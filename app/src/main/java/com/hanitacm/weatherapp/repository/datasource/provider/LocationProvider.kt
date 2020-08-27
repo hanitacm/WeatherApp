@@ -1,4 +1,4 @@
-package com.hanitacm.weatherapp.repository.provider
+package com.hanitacm.weatherapp.repository.datasource.provider
 
 import android.location.Location
 import com.hanitacm.weatherapp.OpenClassOnDebug

@@ -2,7 +2,7 @@ package com.hanitacm.weatherapp.repository
 
 import com.hanitacm.weatherapp.domain.UserLocationDomainModel
 import com.hanitacm.weatherapp.repository.data.mapper.UserLocationDomainMapper
-import com.hanitacm.weatherapp.repository.provider.LocationProvider
+import com.hanitacm.weatherapp.repository.datasource.provider.LocationProvider
 import io.reactivex.Single
 import javax.inject.Inject
 import javax.inject.Singleton
