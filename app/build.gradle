@@ -1,7 +1,21 @@
+buildscript {
+  dependencies {
+    repositories {
+      jcenter()
+    }
+    classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlin_version"
+  }
+}
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-allopen'
+
+allOpen {
+  annotation 'com.hanitacm.weatherapp.OpenClass'
+}
 
 android {
   compileSdkVersion 29
@@ -11,7 +25,7 @@ android {
     targetSdkVersion 29
     versionCode 1
     versionName "1.0"
-    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    testInstrumentationRunner "com.hanitacm.weatherapp.CustomTestRunner"
   }
   buildTypes {
     release {
@@ -34,12 +48,14 @@ android {
       returnDefaultValues = true
       includeAndroidResources = true
     }
+
+    animationsDisabled = true
   }
 }
 
 dependencies {
   def coil_version = "0.8.0"
-  def dagger_version = "2.25.2"
+  def dagger_version = "2.26"
   def floating_search_bar = "2.1.1"
   def google_location_version = "17.0.0"
   def lifecycle_version = "2.2.0"
@@ -47,6 +63,8 @@ dependencies {
   def retrofit_version = '2.3.0'
   def support_version = '1.2.0'
   def core_testing_version = '2.1.0'
+  def espresso_version = '3.2.0'
+  def mockwebserver_version = '4.8.1'
 
   implementation fileTree(include: ['*.jar'], dir: 'libs')
 
@@ -70,7 +88,7 @@ dependencies {
   implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
   implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
   implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
-  implementation 'com.squareup.okhttp3:logging-interceptor:3.12.1'
+  implementation 'com.squareup.okhttp3:logging-interceptor:4.8.1'
 
   /* Rxjava2 */
   implementation "io.reactivex.rxjava2:rxjava:2.1.10"
@@ -95,17 +113,21 @@ dependencies {
   implementation "com.github.arimorty:floatingsearchview:$floating_search_bar"
 
   testImplementation 'junit:junit:4.12'
-  testImplementation 'org.mockito:mockito-core:2.23.0'
   testImplementation 'org.mockito:mockito-inline:2.13.0'
-  testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
+  androidTestImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
   testImplementation 'org.robolectric:robolectric:4.3.1'
   testImplementation 'androidx.test:core:1.2.0'
   testImplementation 'org.junit.jupiter:junit-jupiter-api:5.0.3'
   testImplementation "androidx.arch.core:core-testing:$core_testing_version"
-
+  testImplementation 'org.mockito:mockito-core:2.23.0'
 
   testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.0.3'
   androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-  androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+  androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
+  androidTestImplementation 'androidx.test:rules:1.2.0'
+  androidTestImplementation "com.squareup.okhttp3:mockwebserver:$mockwebserver_version"
+  androidTestImplementation 'org.mockito:mockito-android:2.7.15'
+  androidTestImplementation 'com.jakewharton.espresso:okhttp3-idling-resource:1.0.0'
 
+  kaptAndroidTest "com.google.dagger:dagger-compiler:$dagger_version"
 }
