@@ -1,4 +1,4 @@
-package com.hanitacm.weatherapp.domain
+package com.hanitacm.weatherapp.domain.model
 
 data class WeatherDomainModel(val coordinates: Coordinates,
                               val location: String,

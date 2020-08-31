@@ -3,12 +3,13 @@ package com.hanitacm.weatherapp.presentation
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.hanitacm.weatherapp.RxSchedulerRule
-import com.hanitacm.weatherapp.domain.Coordinates
-import com.hanitacm.weatherapp.domain.GetUserLocationUseCase
-import com.hanitacm.weatherapp.domain.GetWeatherUseCase
-import com.hanitacm.weatherapp.domain.Temperature
-import com.hanitacm.weatherapp.domain.UserLocationDomainModel
-import com.hanitacm.weatherapp.domain.WeatherDomainModel
+import com.hanitacm.weatherapp.domain.Result
+import com.hanitacm.weatherapp.domain.model.Coordinates
+import com.hanitacm.weatherapp.domain.model.ErrorModel
+import com.hanitacm.weatherapp.domain.model.Temperature
+import com.hanitacm.weatherapp.domain.model.WeatherDomainModel
+import com.hanitacm.weatherapp.domain.usecase.GetWeatherInMyLocationUseCase
+import com.hanitacm.weatherapp.domain.usecase.GetWeatherUseCase
 import com.hanitacm.weatherapp.presentation.model.DisplayableWeather
 import com.hanitacm.weatherapp.presentation.model.WeatherSuggestion
 import com.hanitacm.weatherapp.presentation.model.mapper.DomainViewMapper
@@ -38,7 +39,7 @@ internal class CurrentLocationWeatherViewModelShould {
   val rule = RxSchedulerRule()
 
   @Mock
-  private lateinit var getUserLocationUseCase: GetUserLocationUseCase
+  private lateinit var getWeatherInMyLocationUseCase: GetWeatherInMyLocationUseCase
 
   @Mock
   private lateinit var getWeatherUseCase: GetWeatherUseCase
@@ -66,8 +67,7 @@ internal class CurrentLocationWeatherViewModelShould {
   fun `get current location weather`() {
     val weatherDomainModel = validWeather
 
-    whenever(getUserLocationUseCase.getUserLocation()).thenReturn(Single.just(validLocation))
-    whenever(getWeatherUseCase.getWeather(validLocation)).thenReturn(Single.just(weatherDomainModel))
+    whenever(getWeatherInMyLocationUseCase.getWeatherInMyLocation()).thenReturn(Single.just(Result.Success(weatherDomainModel)))
 
     currentLocationWeatherViewModel.getCurrentLocationWeather()
 
@@ -83,7 +83,7 @@ internal class CurrentLocationWeatherViewModelShould {
     val weatherDomainModel = validWeather
 
 
-    whenever(getWeatherUseCase.getWeather(location)).thenReturn(Single.just(weatherDomainModel))
+    whenever(getWeatherUseCase.getWeather(location)).thenReturn(Single.just(Result.Success(weatherDomainModel)))
 
 
     currentLocationWeatherViewModel.loadLocationSuggestions(location)
@@ -103,6 +103,16 @@ internal class CurrentLocationWeatherViewModelShould {
   }
 
 
+  @Test
+  fun `show error if there is no internet connection`() {
+    whenever(getWeatherInMyLocationUseCase.getWeatherInMyLocation()).thenReturn(Single.just(Result.Error(ErrorModel.NoNetworkConnection)))
+
+    currentLocationWeatherViewModel.getCurrentLocationWeather()
+
+    verify(observer).onChanged(CurrentLocationWeatherState.Loading)
+    verify(observer).onChanged(CurrentLocationWeatherState.WeatherLoadFailure(ErrorModel.NoNetworkConnection))
+  }
+
   private val validSuggestions = listOf(WeatherSuggestion(icon = "04n",
       location = "Bunbury, AU",
       temperature = "11",
@@ -112,5 +122,4 @@ internal class CurrentLocationWeatherViewModelShould {
 
   private val validDisplayableWeather = listOf(DisplayableWeather("Bunbury, AU", "Clouds", "11", "11.11", "11.11", "54%", "04n", "1012hPa", "4.46m/s"))
   private val validWeather = listOf(WeatherDomainModel(Coordinates(3.0, 4.0), "Bunbury", "AU", "Clouds", Temperature(11.11, 11.11, 11.11), 54, 4.46, 77, 1012, "04n"))
-  private val validLocation = UserLocationDomainModel(4.0, 3.0)
 }

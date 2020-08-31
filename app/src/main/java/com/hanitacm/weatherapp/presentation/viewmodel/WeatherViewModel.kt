@@ -1,12 +1,13 @@
 package com.hanitacm.weatherapp.presentation.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import android.util.Log
-import com.hanitacm.weatherapp.domain.GetWeatherUseCase
-import com.hanitacm.weatherapp.domain.WeatherDomainModel
+import com.hanitacm.weatherapp.domain.Result
+import com.hanitacm.weatherapp.domain.model.WeatherDomainModel
+import com.hanitacm.weatherapp.domain.usecase.GetWeatherUseCase
 import com.hanitacm.weatherapp.presentation.model.DisplayableWeather
 import com.hanitacm.weatherapp.presentation.model.mapper.DomainViewMapper
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -40,11 +41,9 @@ class WeatherViewModel @Inject constructor(private val getWeatherUseCase: GetWea
     Log.d("error", error.toString())//To change body of created functions use File | Settings | File Templates.
   }
 
-  private fun processResponse(result: List<WeatherDomainModel>) {
+  private fun processResponse(result: Result<List<WeatherDomainModel>>) {
     Log.d("info", result.toString())
-    weather.postValue(mapper.mapToView(result))
-
-    //weather.postValue(DisplayableWeather(result.description, result.temperature, result.humidity, result.))
+    weather.postValue(mapper.mapToView((result as com.hanitacm.weatherapp.domain.Response.Result.Success).data))
   }
 
   override fun onCleared() {

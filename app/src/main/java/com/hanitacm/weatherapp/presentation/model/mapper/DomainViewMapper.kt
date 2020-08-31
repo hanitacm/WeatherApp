@@ -1,6 +1,6 @@
 package com.hanitacm.weatherapp.presentation.model.mapper
 
-import com.hanitacm.weatherapp.domain.WeatherDomainModel
+import com.hanitacm.weatherapp.domain.model.WeatherDomainModel
 import com.hanitacm.weatherapp.presentation.model.DisplayableWeather
 import javax.inject.Inject
 import kotlin.math.roundToInt

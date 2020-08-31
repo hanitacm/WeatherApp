@@ -1,7 +1,7 @@
 package com.hanitacm.weatherapp.repository
 
-import com.hanitacm.weatherapp.domain.UserLocationDomainModel
-import com.hanitacm.weatherapp.domain.WeatherDomainModel
+import com.hanitacm.weatherapp.domain.model.UserLocationDomainModel
+import com.hanitacm.weatherapp.domain.model.WeatherDomainModel
 import com.hanitacm.weatherapp.repository.data.mapper.WeatherDataDomainMapper
 import com.hanitacm.weatherapp.repository.datasource.api.WeatherApi
 import io.reactivex.Single
