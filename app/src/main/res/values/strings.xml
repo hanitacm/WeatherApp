@@ -23,5 +23,8 @@
   <string name="wind">Wind</string>
   <string name="rational_request_location_permission">Location permission is needed to show your position weather</string>
   <string name="location_permission_denied">You can use the top bar to search a location manually</string>
+  <string name="error_no_network_connection">No internet connection</string>
+  <string name="error_no_location_available">Please, enable Google Service to access the current location</string>
+  <string name="error_generic">Something was wrong</string>
 
 </resources>

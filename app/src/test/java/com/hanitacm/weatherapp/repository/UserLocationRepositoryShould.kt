@@ -2,7 +2,7 @@ package com.hanitacm.weatherapp.repository
 
 import android.location.Location
 import com.hanitacm.weatherapp.repository.data.mapper.UserLocationDomainMapper
-import com.hanitacm.weatherapp.repository.provider.LocationGoogleServiceProvider
+import com.hanitacm.weatherapp.repository.datasource.provider.LocationProvider
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.never
 import com.nhaarman.mockitokotlin2.verify
@@ -19,7 +19,7 @@ import org.mockito.junit.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner::class)
 class UserLocationRepositoryShould {
   @Mock
-  private lateinit var locationGoogleServiceProvider: LocationGoogleServiceProvider
+  private lateinit var locationProvider: LocationProvider
 
   @Spy
   private lateinit var mapper: UserLocationDomainMapper
@@ -32,11 +32,11 @@ class UserLocationRepositoryShould {
   fun `return last valid location`() {
 
 
-    val location = `given a location from gps`()
+    val location = givenALocationFromGPS()
 
 
 
-    whenever(locationGoogleServiceProvider.requestLocation()).thenReturn(Single.just(location))
+    whenever(locationProvider.requestLocation()).thenReturn(Single.just(location))
     whenever(mapper.mapToDomainModel(location)).thenCallRealMethod()
 
 
@@ -47,7 +47,7 @@ class UserLocationRepositoryShould {
     locationResult.assertNoErrors()
 
 
-    Mockito.verify(locationGoogleServiceProvider).requestLocation()
+    Mockito.verify(locationProvider).requestLocation()
     Mockito.verify(mapper).mapToDomainModel(location)
 
     locationResult.assertValue { it.longitude == location.longitude && it.latitude == location.latitude }
@@ -55,22 +55,23 @@ class UserLocationRepositoryShould {
   }
 
   @Test
-  fun `throw an exception when provider returns a null value as location`() {
-    whenever(locationGoogleServiceProvider.requestLocation()).thenReturn(Single.error(IllegalStateException("Location is null")))
+  fun `throw an exception when there are some errors`() {
+    whenever(locationProvider.requestLocation()).thenReturn(Single.error(RuntimeException()))
+    //.error(IllegalStateException("Location is null")))
 
     val locationResult = userLocationRepository.getUserLocation().test()
 
     locationResult.awaitTerminalEvent()
-    locationResult.assertError(IllegalStateException::class.java)
+    locationResult.assertError(RuntimeException::class.java)
 
 
-    verify(locationGoogleServiceProvider).requestLocation()
+    verify(locationProvider).requestLocation()
     verify(mapper, never()).mapToDomainModel(any())
 
 
   }
 
-  private fun `given a location from gps`(): Location = Location("test_provider").apply {
+  private fun givenALocationFromGPS(): Location = Location("test_provider").apply {
     latitude = 40.0
     longitude = 3.0
     time = System.currentTimeMillis()

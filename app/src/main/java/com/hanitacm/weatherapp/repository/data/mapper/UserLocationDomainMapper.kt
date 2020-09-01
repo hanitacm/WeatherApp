@@ -1,7 +1,7 @@
 package com.hanitacm.weatherapp.repository.data.mapper
 
 import android.location.Location
-import com.hanitacm.weatherapp.domain.UserLocationDomainModel
+import com.hanitacm.weatherapp.domain.model.UserLocationDomainModel
 import javax.inject.Inject
 
 class UserLocationDomainMapper @Inject constructor() {

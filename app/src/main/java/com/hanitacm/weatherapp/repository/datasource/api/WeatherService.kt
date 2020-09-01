@@ -1,4 +1,4 @@
-package com.hanitacm.weatherapp.repository.api
+package com.hanitacm.weatherapp.repository.datasource.api
 
 import com.hanitacm.weatherapp.repository.data.WeatherData
 import com.hanitacm.weatherapp.repository.data.WeatherLocationData

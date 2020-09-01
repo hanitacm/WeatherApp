@@ -19,6 +19,7 @@ import com.arlib.floatingsearchview.FloatingSearchView
 import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion
 import com.hanitacm.weatherapp.R
 import com.hanitacm.weatherapp.WeatherApplication
+import com.hanitacm.weatherapp.domain.model.ErrorModel
 import com.hanitacm.weatherapp.presentation.model.DisplayableWeather
 import com.hanitacm.weatherapp.presentation.model.WeatherSuggestion
 import com.hanitacm.weatherapp.presentation.viewmodel.CurrentLocationWeatherState
@@ -83,14 +84,25 @@ class FirstFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallb
             CurrentLocationWeatherState.Loading -> progressBar.visibility = View.VISIBLE
             is CurrentLocationWeatherState.LocationSuggestionsLoaded -> showSuggestions(it.weatherSuggestions)
             is CurrentLocationWeatherState.WeatherLoaded -> processResponse(it.weather)
-            is CurrentLocationWeatherState.WeatherLoadFailure -> showError(it.errorMessage)
+            is CurrentLocationWeatherState.WeatherLoadFailure -> showError(it.error)
           }
         })
   }
 
-  private fun showError(errorMessage: String) {
+  private fun showError(error: ErrorModel) {
     progressBar.visibility = View.GONE
+
+    val errorMessage = processError(error)
+
     Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_LONG).show()
+  }
+
+  private fun processError(error: ErrorModel): String {
+    return when (error) {
+      is ErrorModel.NoNetworkConnection -> getString(R.string.error_no_network_connection)
+      is ErrorModel.NoLocationAvailable -> getString(R.string.error_no_location_available)
+      else -> getString(R.string.error_generic)
+    }
   }
 
 

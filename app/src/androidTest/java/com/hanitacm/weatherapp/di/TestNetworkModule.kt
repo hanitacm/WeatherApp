@@ -1,11 +1,15 @@
 package com.hanitacm.weatherapp.di
 
+import android.content.Context
+import android.net.ConnectivityManager
 import com.hanitacm.weatherapp.BuildConfig
-import com.hanitacm.weatherapp.repository.api.WeatherService
+import com.hanitacm.weatherapp.repository.datasource.api.NetworkUtils
+import com.hanitacm.weatherapp.repository.datasource.api.WeatherService
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.mockito.Mockito
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -42,6 +46,10 @@ class TestNetworkModule {
   @Singleton
   @Provides
   fun provideWeatherService(retrofit: Retrofit): WeatherService = retrofit.create(WeatherService::class.java)
+
+  @Singleton
+  @Provides
+  fun provideNetworkUtils(): NetworkUtils = Mockito.mock(NetworkUtils::class.java)
 
 }
 
