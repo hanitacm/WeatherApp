@@ -43,7 +43,7 @@ class WeatherViewModel @Inject constructor(private val getWeatherUseCase: GetWea
 
   private fun processResponse(result: Result<List<WeatherDomainModel>>) {
     Log.d("info", result.toString())
-    weather.postValue(mapper.mapToView((result as com.hanitacm.weatherapp.domain.Response.Result.Success).data))
+    weather.postValue(mapper.mapToView((result as Result.Success).data))
   }
 
   override fun onCleared() {

@@ -1,6 +1,6 @@
 package com.hanitacm.weatherapp.di
 
-import com.hanitacm.weatherapp.WeatherMainFragmentShould
+import com.hanitacm.weatherapp.test.WeatherMainFragmentShould
 import dagger.Component
 import okhttp3.OkHttpClient
 import javax.inject.Singleton
