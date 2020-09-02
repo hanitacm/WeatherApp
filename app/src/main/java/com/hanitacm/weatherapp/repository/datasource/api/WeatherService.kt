@@ -13,9 +13,13 @@ interface WeatherService {
   fun getWeatherData(@Query("APPID") api_key: String, @Query("q") location: String): Single<WeatherData>
 
   @GET("find?type=like&sort=population&cnt=30&units=metric")
-  fun getWeatherLocation(@Query("APPID") api_key: String, @Query("q") location: String):Single<WeatherLocationData>
+  fun getWeatherLocation(@Query("APPID") api_key: String, @Query("q") location: String): Single<WeatherLocationData>
 
   @GET("weather?units=metric")
   fun getWeatherData(@Query("APPID") api_key: String, @Query("lat") latitude: String, @Query("lon") longitude: String): Single<WeatherData>
+
+  @GET("onecall?exclude=current,minutely,hourly&units=metric")
+  fun getWeatherForecast(@Query("APPID") api_key: String, @Query("lat") latitude: String, @Query("lon") longitude: String)
+
 
 }

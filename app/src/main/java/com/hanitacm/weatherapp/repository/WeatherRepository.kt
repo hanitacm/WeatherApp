@@ -19,6 +19,10 @@ class WeatherRepository @Inject constructor(private val weatherApi: WeatherApi, 
       mapper.mapLocationsDataToDomainModel(it)
     }
   }
+
+  fun getWeatherForecast(location: UserLocationDomainModel) {
+    return weatherApi.getWeatherForecast(location.latitude, location.longitude)
+  }
 }
 
 
