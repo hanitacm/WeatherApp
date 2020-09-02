@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import coil.api.load
 import com.arlib.floatingsearchview.FloatingSearchView
 import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion
@@ -24,6 +25,7 @@ import com.hanitacm.weatherapp.presentation.model.DisplayableWeather
 import com.hanitacm.weatherapp.presentation.model.WeatherSuggestion
 import com.hanitacm.weatherapp.presentation.viewmodel.CurrentLocationWeatherState
 import com.hanitacm.weatherapp.presentation.viewmodel.CurrentLocationWeatherViewModel
+import kotlinx.android.synthetic.main.fragment_first.btn_7forecast
 import kotlinx.android.synthetic.main.fragment_first.date
 import kotlinx.android.synthetic.main.fragment_first.floating_search_view
 import kotlinx.android.synthetic.main.fragment_first.humidity
@@ -65,18 +67,20 @@ class FirstFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallb
 
     setViewModel()
 
-    setupObservers()
+    setupObserver()
+    setupNavigation()
     setupFloatingSearchView()
 
     loadWeather()
 
   }
 
+
   private fun setViewModel() {
     currentLocationWeatherViewModel = ViewModelProvider(this, viewModelFactory)[CurrentLocationWeatherViewModel::class.java]
   }
 
-  private fun setupObservers() {
+  private fun setupObserver() {
 
     currentLocationWeatherViewModel.viewState.observe(viewLifecycleOwner,
         Observer {
@@ -105,6 +109,11 @@ class FirstFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallb
     }
   }
 
+  private fun setupNavigation() {
+    btn_7forecast.setOnClickListener {
+      findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+    }
+  }
 
   private fun setupFloatingSearchView() {
 

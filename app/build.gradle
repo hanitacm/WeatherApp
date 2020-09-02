@@ -50,6 +50,7 @@ dependencies {
   def floating_search_bar = "2.1.1"
   def google_location_version = "17.0.0"
   def lifecycle_version = "2.2.0"
+  def nav_version = "2.3.0"
   def recyclerview_version = '1.1.0'
   def retrofit_version = '2.3.0'
   def support_version = '1.2.0'
@@ -96,8 +97,10 @@ dependencies {
 
   implementation 'androidx.appcompat:appcompat:1.2.0'
   implementation 'com.google.android.material:material:1.2.0'
-  implementation 'androidx.navigation:navigation-fragment-ktx:2.3.0'
-  implementation 'androidx.navigation:navigation-ui-ktx:2.3.0'
+
+  /* Navigation Controller */
+  implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+  implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
 
   /* Floating search view */

@@ -59,6 +59,16 @@
       app:layout_constraintStart_toStartOf="@id/weather_icon"
       app:layout_constraintTop_toBottomOf="@id/weather_icon"
       />
+  <Button
+      android:id="@+id/btn_7forecast"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="32dp"
+      android:background="#192A4C"
+      android:text="@string/btn_7forecast"
+      app:layout_constraintBottom_toTopOf="@id/meteo_data"
+      app:layout_constraintEnd_toEndOf="parent"
+      />
   <TableLayout
       android:id="@+id/meteo_data"
       android:layout_width="fill_parent"
@@ -150,7 +160,9 @@
       app:floatingSearch_suggestionsListAnimDuration="250"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      />
+      >
+
+  </com.arlib.floatingsearchview.FloatingSearchView>
   <ProgressBar
       android:id="@+id/progressBar"
       style="?android:attr/progressBarStyle"

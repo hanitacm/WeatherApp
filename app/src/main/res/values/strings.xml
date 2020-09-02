@@ -26,5 +26,6 @@
   <string name="error_no_network_connection">No internet connection</string>
   <string name="error_no_location_available">Please, enable Google Service to access the current location</string>
   <string name="error_generic">Something was wrong</string>
+  <string name="btn_7forecast">7-day forecast >></string>
 
 </resources>
