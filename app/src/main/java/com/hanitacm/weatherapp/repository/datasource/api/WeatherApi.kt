@@ -9,7 +9,7 @@ import javax.inject.Singleton
 
 @Singleton
 class WeatherApi @Inject constructor(private val weatherService: WeatherService, private val networkUtils: NetworkUtils) {
-  private val apiKey = "aaf33ec8d7f07ee949745b53d8474dbeb2"
+  private val apiKey = "f33ec8d7f07ee949745b53d8474dbeb2"
 
   fun getWeather(latitude: String, longitude: String): Single<WeatherData> {
 
