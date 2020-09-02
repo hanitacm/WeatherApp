@@ -8,6 +8,8 @@ data class DisplayableWeather(val location: String,
                               val humidity: String,
                               val icon: String,
                               val pressure: String,
-                              val wind: String)
+                              val wind: String,
+                              val latitude: Double,
+                              val longitude: Double)
 
 

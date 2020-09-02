@@ -16,7 +16,9 @@ class DomainViewMapper @Inject constructor() {
             "${it.humidity}%",
             it.icon,
             "${it.pressure}hPa",
-            "${it.wind}m/s")
+            "${it.wind}m/s",
+            it.coordinates.latitude,
+            it.coordinates.longitude)
       }
 
 

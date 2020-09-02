@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -68,7 +69,7 @@ class FirstFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallb
     setViewModel()
 
     setupObserver()
-    setupNavigation()
+
     setupFloatingSearchView()
 
     loadWeather()
@@ -109,10 +110,12 @@ class FirstFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallb
     }
   }
 
-  private fun setupNavigation() {
+  private fun setupNavigation(coordinates: Bundle) {
     btn_7forecast.setOnClickListener {
-      findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+      findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment, coordinates)
     }
+
+
   }
 
   private fun setupFloatingSearchView() {
@@ -180,6 +183,8 @@ class FirstFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallb
   private fun processResponse(response: List<DisplayableWeather>?) {
     floating_search_view.clearSuggestions()
     progressBar.visibility = View.GONE
+
+
     if (!response.isNullOrEmpty()) {
       response.first().let {
         floating_search_view.setSearchBarTitle(it.location)
@@ -190,6 +195,9 @@ class FirstFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallb
         weather_icon.load(it.icon)
         wind.text = it.wind
         pressure.text = it.pressure
+        val coordinates = bundleOf(Pair("latitude", it.latitude), Pair("longitude", it.longitude))
+        setupNavigation(coordinates)
+
       }
     }
   }
