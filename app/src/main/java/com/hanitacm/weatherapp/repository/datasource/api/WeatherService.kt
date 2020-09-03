@@ -1,6 +1,7 @@
 package com.hanitacm.weatherapp.repository.datasource.api
 
 import com.hanitacm.weatherapp.repository.data.WeatherData
+import com.hanitacm.weatherapp.repository.data.WeatherForecastData
 import com.hanitacm.weatherapp.repository.data.WeatherLocationData
 import io.reactivex.Single
 import retrofit2.http.GET
@@ -19,7 +20,7 @@ interface WeatherService {
   fun getWeatherData(@Query("APPID") api_key: String, @Query("lat") latitude: String, @Query("lon") longitude: String): Single<WeatherData>
 
   @GET("onecall?exclude=current,minutely,hourly&units=metric")
-  fun getWeatherForecast(@Query("APPID") api_key: String, @Query("lat") latitude: String, @Query("lon") longitude: String)
+  fun getWeatherForecast(@Query("APPID") api_key: String, @Query("lat") latitude: String, @Query("lon") longitude: String): Single<WeatherForecastData>
 
 
 }
