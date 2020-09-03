@@ -46,10 +46,10 @@ abstract class ViewModelBuilder {
   @ViewModelKey(CurrentLocationWeatherViewModel::class)
   abstract fun bindCurrentLocationWeatherViewModel(currentLocationWeatherViewModel: CurrentLocationWeatherViewModel): ViewModel
 
-  @Binds
-  @IntoMap
-  @ViewModelKey(ForecastViewModel::class)
-  abstract fun bindForecastViewModel(forecastViewModel: ForecastViewModel): ViewModel
+//  @Binds
+//  @IntoMap
+//  @ViewModelKey(ForecastViewModel::class)
+//  abstract fun bindForecastViewModel(forecastViewModel: ForecastViewModel): ViewModel
 
   @Binds
   abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory

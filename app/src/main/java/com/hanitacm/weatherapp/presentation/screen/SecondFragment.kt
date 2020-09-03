@@ -22,7 +22,7 @@ import javax.inject.Inject
 
 class SecondFragment : Fragment() {
 
-  private lateinit var forecastViewModel: ForecastViewModel
+  //private lateinit var forecastViewModel: ForecastViewModel
   private lateinit var viewManager: RecyclerView.LayoutManager
   private lateinit var viewAdapter: WeatherAdapter
 
@@ -49,10 +49,16 @@ class SecondFragment : Fragment() {
     setupRecyclerView()
 
     setViewModel()
+
+    loadForecast()
+  }
+
+  private fun loadForecast() {
+    TODO("Not yet implemented")
   }
 
   private fun setViewModel() {
-    forecastViewModel = ViewModelProvider(this, viewModelFactory)[ForecastViewModel::class.java]
+    //forecastViewModel = ViewModelProvider(this, viewModelFactory)[ForecastViewModel::class.java]
   }
 
   private fun setupRecyclerView() {
