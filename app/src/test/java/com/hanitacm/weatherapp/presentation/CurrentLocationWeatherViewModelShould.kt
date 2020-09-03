@@ -120,6 +120,6 @@ internal class CurrentLocationWeatherViewModelShould {
       longitude = 3.0))
 
 
-  private val validDisplayableWeather = listOf(DisplayableWeather("Bunbury, AU", "Clouds", "11", "11.11", "11.11", "54%", "04n", "1012hPa", "4.46m/s"))
+  private val validDisplayableWeather = listOf(DisplayableWeather("Bunbury, AU", "Clouds", "11", "11.11", "11.11", "54%", "04n", "1012hPa", "4.46m/s", 4.0, 3.0))
   private val validWeather = listOf(WeatherDomainModel(Coordinates(3.0, 4.0), "Bunbury", "AU", "Clouds", Temperature(11.11, 11.11, 11.11), 54, 4.46, 77, 1012, "04n"))
 }
