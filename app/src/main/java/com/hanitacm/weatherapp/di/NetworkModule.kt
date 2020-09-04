@@ -6,6 +6,7 @@ import com.hanitacm.weatherapp.BuildConfig
 import com.hanitacm.weatherapp.repository.datasource.api.WeatherService
 import dagger.Module
 import dagger.Provides
+import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -34,10 +35,11 @@ class NetworkModule {
   fun provideRetrofit(client: OkHttpClient): Retrofit =
       Retrofit.Builder()
           .baseUrl(weatherAPIUrl)
-          .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+          .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
           .addConverterFactory(GsonConverterFactory.create())
           .client(client)
           .build()
+
 
   @Singleton
   @Provides
