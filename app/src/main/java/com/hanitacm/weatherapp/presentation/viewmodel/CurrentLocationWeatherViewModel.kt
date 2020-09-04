@@ -31,7 +31,6 @@ class CurrentLocationWeatherViewModel @Inject constructor(private val getWeather
 
     subscription.add(getWeatherInMyLocationUseCase.getWeatherInMyLocation()
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribeOn(Schedulers.io())
         .subscribe { result -> processResponse(result) }
     )
   }
@@ -42,7 +41,6 @@ class CurrentLocationWeatherViewModel @Inject constructor(private val getWeather
 
       subscription.add(getWeatherUseCase.getWeather(location)
           .observeOn(AndroidSchedulers.mainThread())
-          .subscribeOn(Schedulers.io())
           .subscribe { result -> processSuggestionsResponse(result) }
       )
 
@@ -54,7 +52,6 @@ class CurrentLocationWeatherViewModel @Inject constructor(private val getWeather
 
     subscription.add(getWeatherUseCase.getWeather(UserLocationDomainModel(latitude, longitude))
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribeOn(Schedulers.io())
         .subscribe { result -> processResponse(result) }
     )
 

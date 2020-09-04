@@ -27,7 +27,6 @@ class ForecastViewModel @Inject constructor(private val getForecastUseCase: GetF
 
     subscription.add(getForecastUseCase.getForecast(UserLocationDomainModel(latitude, longitude))
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribeOn(Schedulers.io())
         .subscribe { result -> processResponse(result) }
     )
 
