@@ -9,26 +9,24 @@ import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 
-class ViewModelBuilder {
-  @Module
-  abstract class ViewModelBuilder {
+@Module
+abstract class ViewModelBuilder {
 
-    @Binds
-    @IntoMap
-    @ViewModelKey(WeatherViewModel::class)
-    abstract fun bindWeatherViewModel(weatherViewModel: WeatherViewModel): ViewModel
+  @Binds
+  @IntoMap
+  @ViewModelKey(WeatherViewModel::class)
+  abstract fun bindWeatherViewModel(weatherViewModel: WeatherViewModel): ViewModel
 
-    @Binds
-    @IntoMap
-    @ViewModelKey(CurrentLocationWeatherViewModel::class)
-    abstract fun bindCurrentLocationWeatherViewModel(currentLocationWeatherViewModel: CurrentLocationWeatherViewModel): ViewModel
+  @Binds
+  @IntoMap
+  @ViewModelKey(CurrentLocationWeatherViewModel::class)
+  abstract fun bindCurrentLocationWeatherViewModel(currentLocationWeatherViewModel: CurrentLocationWeatherViewModel): ViewModel
 
-    @Binds
-    @IntoMap
-    @ViewModelKey(ForecastViewModel::class)
-    abstract fun bindForecastViewModel(forecastViewModel: ForecastViewModel): ViewModel
+  @Binds
+  @IntoMap
+  @ViewModelKey(ForecastViewModel::class)
+  abstract fun bindForecastViewModel(forecastViewModel: ForecastViewModel): ViewModel
 
-    @Binds
-    abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
-  }
+  @Binds
+  abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 }
