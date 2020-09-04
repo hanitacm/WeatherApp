@@ -9,17 +9,17 @@ import javax.inject.Inject
 class ForecastDataDomainMapper @Inject constructor() {
 
   fun mapToDomainModel(weatherSet: WeatherForecastData) =
-      weatherSet.daily.map {
+      weatherSet.list.map {
         WeatherDomainModel(
-            coordinates = Coordinates(weatherSet.lon, weatherSet.lat),
-            location = weatherSet.timezone,
-            country = "",
+            coordinates = Coordinates(weatherSet.city.coord.lon, weatherSet.city.coord.lat),
+            location = weatherSet.city.name,
+            country = weatherSet.city.country,
             weather = it.weather.first().main,
-            temperature = Temperature(it.temp.day, it.temp.max, it.temp.min),
-            humidity = it.humidity,
-            wind = it.windSpeed,
-            clouds = it.clouds,
-            pressure = it.pressure,
+            temperature = Temperature(it.main.temp, it.main.tempMax, it.main.tempMin),
+            humidity = it.main.humidity,
+            wind = it.wind.speed,
+            clouds = it.clouds.all,
+            pressure = it.main.pressure,
             icon = "http://openweathermap.org/img/wn/${it.weather.first().icon}@2x.png")
       }
 }

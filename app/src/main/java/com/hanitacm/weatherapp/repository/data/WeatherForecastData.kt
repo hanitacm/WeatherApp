@@ -1,77 +1,86 @@
 package com.hanitacm.weatherapp.repository.data
 
+
 import com.google.gson.annotations.SerializedName
 
-
 data class WeatherForecastData(
-    @SerializedName("daily")
-    val daily: List<Daily>,
-    @SerializedName("lat")
-    val lat: Double,
-    @SerializedName("lon")
-    val lon: Double,
-    @SerializedName("timezone")
-    val timezone: String,
-    @SerializedName("timezone_offset")
-    val timezoneOffset: Int
+    @SerializedName("city")
+    val city: City,
+    @SerializedName("cnt")
+    val cnt: Int,
+    @SerializedName("cod")
+    val cod: String,
+    @SerializedName("list")
+    val list: List<Daily>,
+    @SerializedName("message")
+    val message: Int
 )
 
-data class Daily(
-    @SerializedName("clouds")
-    val clouds: Int,
-    @SerializedName("dew_point")
-    val dewPoint: Double,
-    @SerializedName("dt")
-    val dt: Int,
-    @SerializedName("feels_like")
-    val feelsLike: FeelsLike,
-    @SerializedName("humidity")
-    val humidity: Int,
-    @SerializedName("pop")
-    val pop: Int,
-    @SerializedName("pressure")
-    val pressure: Int,
-    @SerializedName("rain")
-    val rain: Double,
+data class City(
+    @SerializedName("coord")
+    val coord: Coord,
+    @SerializedName("country")
+    val country: String,
+    @SerializedName("id")
+    val id: Int,
+    @SerializedName("name")
+    val name: String,
+    @SerializedName("population")
+    val population: Int,
     @SerializedName("sunrise")
     val sunrise: Int,
     @SerializedName("sunset")
     val sunset: Int,
-    @SerializedName("temp")
-    val temp: Temp,
-    @SerializedName("uvi")
-    val uvi: Double,
+    @SerializedName("timezone")
+    val timezone: Int
+)
+
+data class Daily(
+    @SerializedName("clouds")
+    val clouds: Clouds,
+    @SerializedName("dt")
+    val dt: Int,
+    @SerializedName("dt_txt")
+    val dtTxt: String,
+    @SerializedName("main")
+    val main: MainForecast,
+    @SerializedName("pop")
+    val pop: Int,
+    @SerializedName("sys")
+    val sys: SysForecast,
+    @SerializedName("visibility")
+    val visibility: Int,
     @SerializedName("weather")
     val weather: List<Weather>,
-    @SerializedName("wind_deg")
-    val windDeg: Int,
-    @SerializedName("wind_speed")
-    val windSpeed: Double
+    @SerializedName("wind")
+    val wind: Wind
 )
 
-data class FeelsLike(
-    @SerializedName("day")
-    val day: Double,
-    @SerializedName("eve")
-    val eve: Double,
-    @SerializedName("morn")
-    val morn: Double,
-    @SerializedName("night")
-    val night: Double
+data class MainForecast(
+    @SerializedName("feels_like")
+    val feelsLike: Double,
+    @SerializedName("grnd_level")
+    val grndLevel: Int,
+    @SerializedName("humidity")
+    val humidity: Int,
+    @SerializedName("pressure")
+    val pressure: Int,
+    @SerializedName("sea_level")
+    val seaLevel: Int,
+    @SerializedName("temp")
+    val temp: Double,
+    @SerializedName("temp_kf")
+    val tempKf: Double,
+    @SerializedName("temp_max")
+    val tempMax: Double,
+    @SerializedName("temp_min")
+    val tempMin: Double
 )
 
-data class Temp(
-    @SerializedName("day")
-    val day: Double,
-    @SerializedName("eve")
-    val eve: Double,
-    @SerializedName("max")
-    val max: Double,
-    @SerializedName("min")
-    val min: Double,
-    @SerializedName("morn")
-    val morn: Double,
-    @SerializedName("night")
-    val night: Double
+data class SysForecast(
+    @SerializedName("pod")
+    val pod: String
 )
+
+
 
