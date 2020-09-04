@@ -13,7 +13,8 @@ import javax.inject.Singleton
 @Component(
     modules = [ViewModelBuilder::class,
       NetworkModule::class,
-      LocationModule::class])
+      LocationModule::class,
+      ErrorModule::class])
 interface AppComponent {
 
   @Component.Factory
