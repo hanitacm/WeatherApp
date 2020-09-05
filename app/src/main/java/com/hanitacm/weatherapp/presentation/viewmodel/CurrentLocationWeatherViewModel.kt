@@ -14,7 +14,6 @@ import com.hanitacm.weatherapp.presentation.model.mapper.DomainViewMapper
 import com.hanitacm.weatherapp.presentation.model.mapper.WeatherSuggestionMapper
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class CurrentLocationWeatherViewModel @Inject constructor(private val getWeatherInMyLocationUseCase: GetWeatherInMyLocationUseCase, private val getWeatherUseCase: GetWeatherUseCase, private val mapper: DomainViewMapper, private val mapperSuggestion: WeatherSuggestionMapper) : ViewModel() {
@@ -27,14 +26,16 @@ class CurrentLocationWeatherViewModel @Inject constructor(private val getWeather
   private val subscription = CompositeDisposable()
 
   fun getCurrentLocationWeather() {
-    _viewState.value = CurrentLocationWeatherState.Loading
+    if (_viewState.value == null) {
+      _viewState.value = CurrentLocationWeatherState.Loading
 
-    subscription.add(getWeatherInMyLocationUseCase.getWeatherInMyLocation()
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe { result -> processResponse(result) }
-    )
+      subscription.add(getWeatherInMyLocationUseCase.getWeatherInMyLocation()
+          .observeOn(AndroidSchedulers.mainThread())
+          .subscribe { result -> processResponse(result) }
+      )
+
+    }
   }
-
 
   fun loadLocationSuggestions(location: String) {
     if (location.isNotBlank() && location.length > 2) {
