@@ -12,7 +12,6 @@ import com.hanitacm.weatherapp.domain.usecase.GetForecastUseCase
 import com.hanitacm.weatherapp.presentation.model.mapper.DomainViewMapper
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class ForecastViewModel @Inject constructor(private val getForecastUseCase: GetForecastUseCase, private val mapper: DomainViewMapper) : ViewModel() {
@@ -24,7 +23,7 @@ class ForecastViewModel @Inject constructor(private val getForecastUseCase: GetF
   private val subscription = CompositeDisposable()
 
   fun getForecastWeather(latitude: Double, longitude: Double) {
-
+    _viewState.value = ForecastViewState.Loading
     subscription.add(getForecastUseCase.getForecast(UserLocationDomainModel(latitude, longitude))
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe { result -> processResponse(result) }
