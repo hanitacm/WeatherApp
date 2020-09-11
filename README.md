@@ -1,4 +1,5 @@
-# WeatherApp
+# WeatherApp  
+🚧 In progress  
 Typical weather application, show the weather information in your location or wherever you search.
 The weather data are supplied by OpenWeather API
 
