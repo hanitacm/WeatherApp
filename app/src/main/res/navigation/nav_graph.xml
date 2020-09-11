@@ -37,5 +37,9 @@
         android:name="longitude"
         app:argType="string"
         />
+    <argument
+        android:name="location"
+        app:argType="string"
+        />
   </fragment>
 </navigation>

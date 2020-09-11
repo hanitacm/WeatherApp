@@ -195,8 +195,9 @@ class FirstFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallb
         weather_icon.load(it.icon)
         wind.text = it.wind
         pressure.text = it.pressure
-        val coordinates = bundleOf(Pair("latitude", it.latitude.toString()), Pair("longitude", it.longitude.toString()))
-        setupNavigation(coordinates)
+        val arguments = bundleOf(Pair("latitude", it.latitude.toString()), Pair("longitude", it.longitude.toString()),
+            Pair("location", it.location))
+        setupNavigation(arguments)
 
       }
     }

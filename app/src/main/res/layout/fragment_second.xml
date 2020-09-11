@@ -6,16 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".presentation.screen.SecondFragment"
     >
-
+  <!--  <ScrollView-->
+  <!--      android:layout_width="match_parent"-->
+  <!--      android:layout_height="match_parent"-->
+  <!--      android:fillViewport="false"-->
+  <!--      app:layout_constraintStart_toStartOf="parent"-->
+  <!--      app:layout_constraintTop_toBottomOf="@id/toolbar"-->
+  <!--      >-->
   <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/forecast_list"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
+      android:layout_height="0dp"
       android:scrollbars="vertical"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/toolbar"
 
       />
+  <!--  </ScrollView>-->
   <ProgressBar
       android:id="@+id/progressBar"
       style="?android:attr/progressBarStyle"
@@ -24,6 +32,17 @@
       android:visibility="gone"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      />
+  <androidx.appcompat.widget.Toolbar
+      android:id="@+id/toolbar"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="?attr/colorPrimary"
+      android:fitsSystemWindows="true"
+      android:minHeight="?attr/actionBarSize"
+      android:theme="?attr/actionBarTheme"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
       />

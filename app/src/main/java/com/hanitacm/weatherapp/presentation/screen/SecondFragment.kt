@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -18,9 +19,9 @@ import com.hanitacm.weatherapp.presentation.adapter.WeatherAdapter
 import com.hanitacm.weatherapp.presentation.model.DisplayableWeather
 import com.hanitacm.weatherapp.presentation.viewmodel.ForecastViewModel
 import com.hanitacm.weatherapp.presentation.viewmodel.ForecastViewState
-import kotlinx.android.synthetic.main.activity_searchable.locations
 import kotlinx.android.synthetic.main.fragment_first.progressBar
 import kotlinx.android.synthetic.main.fragment_second.forecast_list
+import kotlinx.android.synthetic.main.fragment_second.toolbar
 import javax.inject.Inject
 
 
@@ -33,6 +34,17 @@ class SecondFragment : Fragment() {
   @Inject
   lateinit var viewModelFactory: ViewModelProvider.Factory
 
+  override fun onActivityCreated(savedInstanceState: Bundle?) {
+    super.onActivityCreated(savedInstanceState)
+
+    setToolBar()
+  }
+
+  private fun setToolBar() {
+    toolbar.title = arguments?.getString("location")
+    (activity as AppCompatActivity).setSupportActionBar(toolbar)
+
+  }
 
   override fun onCreateView(
       inflater: LayoutInflater, container: ViewGroup?,
@@ -100,6 +112,7 @@ class SecondFragment : Fragment() {
       else -> getString(R.string.error_generic)
     }
   }
+
 
   private fun loadForecast() {
     val latitude = arguments?.getString("latitude")
