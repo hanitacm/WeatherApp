@@ -11,7 +11,8 @@ import com.hanitacm.weatherapp.R
 import com.hanitacm.weatherapp.presentation.model.DisplayableWeather
 import kotlinx.android.synthetic.main.weather_location_item.view.image_weather
 import kotlinx.android.synthetic.main.weather_location_item.view.location_temperature
-import kotlinx.android.synthetic.main.weather_location_item.view.location_text
+import kotlinx.android.synthetic.main.weather_location_item.view.temperature_max
+import kotlinx.android.synthetic.main.weather_location_item.view.temperature_min
 import kotlinx.android.synthetic.main.weather_location_item.view.weather_description
 import kotlin.properties.Delegates
 
@@ -39,17 +40,20 @@ internal class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewH
 
 
   internal inner class WeatherViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    private val location: TextView = itemView.location_text
     private val weatherDescription: TextView = itemView.weather_description
     private val temperature: TextView = itemView.location_temperature
     private val imageWeather: ImageView = itemView.image_weather
+    private val minTemperature: TextView = itemView.temperature_min
+    private val maxTemperature: TextView = itemView.temperature_max
 
 
     fun bind(mediaItem: DisplayableWeather) {
-      imageWeather.load(itemView.context.getString(R.string.weather_icon_url,mediaItem.icon))
-      location.text = mediaItem.location
+      imageWeather.load(mediaItem.icon)
       weatherDescription.text = mediaItem.description
-      temperature.text = itemView.context.getString(R.string.listable_temperature, mediaItem.temperature, mediaItem.temperature_min, mediaItem.temperature_max)
+      temperature.text = mediaItem.temperature
+      maxTemperature.text = mediaItem.temperature_max
+      minTemperature.text = mediaItem.temperature_min
+
     }
   }
 }
