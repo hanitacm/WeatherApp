@@ -34,7 +34,7 @@ class ForecastViewModel @Inject constructor(private val getForecastUseCase: GetF
   private fun processResponse(result: Result<List<WeatherDomainModel>>) {
     when (result) {
       is Result.Success ->
-        _viewState.postValue(ForecastViewState.ForecastLoaded(mapper.mapToView(result.data)))
+        _viewState.postValue(ForecastViewState.ForecastLoaded(mapper.mapToView(result.data.drop(1))))
       else -> showError((result as Result.Error).error)
 
     }
