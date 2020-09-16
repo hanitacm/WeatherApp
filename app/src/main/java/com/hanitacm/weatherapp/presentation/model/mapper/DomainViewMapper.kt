@@ -20,7 +20,7 @@ class DomainViewMapper @Inject constructor() {
             it.coordinates.latitude,
             it.coordinates.longitude,
             String.format("%tA %<tb %<td", it.date),
-            it.description)
+            it.description.capitalize())
       }
 
 
