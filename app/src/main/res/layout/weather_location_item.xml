@@ -4,19 +4,18 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/selector_row"
-    android:paddingTop="@dimen/row_vertical_padding"
-    android:paddingBottom="@dimen/row_vertical_padding"
     android:paddingLeft="@dimen/row_vertical_padding"
+    android:paddingTop="@dimen/row_vertical_padding"
     android:paddingRight="@dimen/row_vertical_padding"
+    android:paddingBottom="@dimen/row_vertical_padding"
     >
-  <ImageView
-      android:id="@+id/image_weather"
-      android:layout_width="106dp"
-      android:layout_height="80dp"
-      android:layout_marginEnd="16dp"
-      app:layout_constraintBottom_toBottomOf="parent"
+  <TextView
+      android:id="@+id/date"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textStyle="bold"
+      app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintLeft_toLeftOf="parent"
       />
   <TextView
       android:id="@+id/weather_description"
@@ -24,10 +23,19 @@
       android:layout_height="wrap_content"
       android:layout_marginStart="24dp"
       android:layout_marginEnd="16dp"
-      app:layout_constraintStart_toEndOf="@+id/image_weather"
-      app:layout_constraintTop_toTopOf="parent"
-
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/date"
       />
+  <ImageView
+      android:id="@+id/image_weather"
+      android:layout_width="106dp"
+      android:layout_height="80dp"
+      android:layout_marginEnd="16dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintRight_toLeftOf="@id/location_temperature"
+      app:layout_constraintTop_toTopOf="parent"
+      />
+
   <TextView
       android:id="@+id/location_temperature"
       android:layout_width="50dp"

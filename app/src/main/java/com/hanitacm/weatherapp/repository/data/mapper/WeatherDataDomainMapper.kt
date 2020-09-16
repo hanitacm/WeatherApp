@@ -5,6 +5,7 @@ import com.hanitacm.weatherapp.domain.model.Temperature
 import com.hanitacm.weatherapp.domain.model.WeatherDomainModel
 import com.hanitacm.weatherapp.repository.data.WeatherData
 import com.hanitacm.weatherapp.repository.data.WeatherLocationData
+import java.util.Date
 import javax.inject.Inject
 
 class WeatherDataDomainMapper @Inject constructor() {
@@ -14,22 +15,11 @@ class WeatherDataDomainMapper @Inject constructor() {
 
   private fun mapWeatherToDomainModel(data: WeatherData): WeatherDomainModel =
       WeatherDomainModel(
-          Coordinates(data.coord.lon, data.coord.lat)
-          , data.name
-          , data.sys.country
-          , data.weather[0].main
-          , Temperature(data.main.temp
-          , data.main.tempMax
-          , data.main.tempMin)
-          , data.main.humidity
-          , data.wind.speed
-          , data.clouds.all
-          , data.main.pressure
-          , "http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png")
+          Coordinates(data.coord.lon, data.coord.lat), data.name, data.sys.country, data.weather[0].main, Temperature(data.main.temp, data.main.tempMax, data.main.tempMin), data.main.humidity, data.wind.speed, data.clouds.all, data.main.pressure, "http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png", date = Date(data.dt * 1000))
 
   fun mapLocationsDataToDomainModel(data: WeatherLocationData): List<WeatherDomainModel> {
     return if (data.count > 0) data.list.map { mapWeatherToDomainModel(it) }
-           else emptyList()
+    else emptyList()
   }
 }
 

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.hanitacm.weatherapp.R
 import com.hanitacm.weatherapp.presentation.model.DisplayableWeather
+import kotlinx.android.synthetic.main.weather_location_item.view.date
 import kotlinx.android.synthetic.main.weather_location_item.view.image_weather
 import kotlinx.android.synthetic.main.weather_location_item.view.location_temperature
 import kotlinx.android.synthetic.main.weather_location_item.view.temperature_max
@@ -45,6 +46,7 @@ internal class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewH
     private val imageWeather: ImageView = itemView.image_weather
     private val minTemperature: TextView = itemView.temperature_min
     private val maxTemperature: TextView = itemView.temperature_max
+    private val date: TextView = itemView.date
 
 
     fun bind(mediaItem: DisplayableWeather) {
@@ -53,6 +55,7 @@ internal class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewH
       temperature.text = mediaItem.temperature
       maxTemperature.text = mediaItem.temperature_max
       minTemperature.text = mediaItem.temperature_min
+      date.text = mediaItem.date
 
     }
   }

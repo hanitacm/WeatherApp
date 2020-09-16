@@ -22,21 +22,21 @@ data class Daily(
     @SerializedName("dew_point")
     val dewPoint: Double,
     @SerializedName("dt")
-    val dt: Int,
+    val dt: Long,
     @SerializedName("feels_like")
     val feelsLike: FeelsLike,
     @SerializedName("humidity")
     val humidity: Int,
     @SerializedName("pop")
-    val pop: Int,
+    val pop: Double,
     @SerializedName("pressure")
     val pressure: Int,
     @SerializedName("rain")
     val rain: Double,
     @SerializedName("sunrise")
-    val sunrise: Int,
+    val sunrise: Long,
     @SerializedName("sunset")
-    val sunset: Int,
+    val sunset: Long,
     @SerializedName("temp")
     val temp: Temp,
     @SerializedName("uvi")

@@ -1,5 +1,7 @@
 package com.hanitacm.weatherapp.domain.model
 
+import java.util.Date
+
 data class WeatherDomainModel(val coordinates: Coordinates,
                               val location: String,
                               val country: String,
@@ -9,7 +11,8 @@ data class WeatherDomainModel(val coordinates: Coordinates,
                               val wind: Double,
                               val clouds: Int,
                               val pressure: Int,
-                              val icon: String)
+                              val icon: String,
+                              val date: Date)
 
 data class Coordinates(val longitude: Double, val latitude: Double)
 data class Temperature(val temperature: Double, val maxTemperature: Double, val minTemperature: Double)

@@ -18,7 +18,8 @@ class DomainViewMapper @Inject constructor() {
             "${it.pressure}hPa",
             "${it.wind}m/s",
             it.coordinates.latitude,
-            it.coordinates.longitude)
+            it.coordinates.longitude,
+            String.format("%tA %<tb %<td", it.date))
       }
 
 
