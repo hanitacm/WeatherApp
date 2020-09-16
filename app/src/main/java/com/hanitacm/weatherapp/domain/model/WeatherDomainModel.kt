@@ -12,7 +12,8 @@ data class WeatherDomainModel(val coordinates: Coordinates,
                               val clouds: Int,
                               val pressure: Int,
                               val icon: String,
-                              val date: Date)
+                              val date: Date,
+                              val description: String)
 
 data class Coordinates(val longitude: Double, val latitude: Double)
 data class Temperature(val temperature: Double, val maxTemperature: Double, val minTemperature: Double)

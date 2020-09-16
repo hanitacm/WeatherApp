@@ -22,7 +22,8 @@ class ForecastDataDomainMapper @Inject constructor() {
             clouds = it.clouds,
             pressure = it.pressure,
             icon = "http://openweathermap.org/img/wn/${it.weather.first().icon}@2x.png",
-            date = Date(it.dt * 1000))
+            date = Date(it.dt * 1000),
+            description = it.weather.first().description)
       }
 }
 

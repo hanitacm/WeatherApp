@@ -51,7 +51,7 @@ internal class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewH
 
     fun bind(mediaItem: DisplayableWeather) {
       imageWeather.load(mediaItem.icon)
-      weatherDescription.text = mediaItem.description
+      weatherDescription.text = mediaItem.longDescription
       temperature.text = mediaItem.temperature
       maxTemperature.text = mediaItem.temperature_max
       minTemperature.text = mediaItem.temperature_min

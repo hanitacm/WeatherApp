@@ -11,6 +11,7 @@ data class DisplayableWeather(val location: String,
                               val wind: String,
                               val latitude: Double,
                               val longitude: Double,
-                              val date: String)
+                              val date: String,
+                              val longDescription: String)
 
 
