@@ -1,5 +1,6 @@
 package com.hanitacm.weatherapp.presentation.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +12,8 @@ import com.hanitacm.weatherapp.R
 import com.hanitacm.weatherapp.presentation.model.DisplayableWeather
 import kotlinx.android.synthetic.main.weather_location_item.view.date
 import kotlinx.android.synthetic.main.weather_location_item.view.image_weather
-import kotlinx.android.synthetic.main.weather_location_item.view.location_temperature
+import kotlinx.android.synthetic.main.weather_location_item.view.location_clouds
+import kotlinx.android.synthetic.main.weather_location_item.view.location_wind
 import kotlinx.android.synthetic.main.weather_location_item.view.temperature_max
 import kotlinx.android.synthetic.main.weather_location_item.view.temperature_min
 import kotlinx.android.synthetic.main.weather_location_item.view.weather_description
@@ -28,7 +30,7 @@ internal class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewH
     val v = LayoutInflater.from(parent.context).inflate(R.layout.weather_location_item, parent, false)
 
 
-    return WeatherViewHolder(v)
+    return WeatherViewHolder(v, parent.context)
   }
 
   override fun onBindViewHolder(holder: WeatherViewHolder, position: Int) {
@@ -40,22 +42,24 @@ internal class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.WeatherViewH
   }
 
 
-  internal inner class WeatherViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+  internal inner class WeatherViewHolder(itemView: View, val context: Context) : RecyclerView.ViewHolder(itemView) {
     private val weatherDescription: TextView = itemView.weather_description
-    private val temperature: TextView = itemView.location_temperature
     private val imageWeather: ImageView = itemView.image_weather
     private val minTemperature: TextView = itemView.temperature_min
     private val maxTemperature: TextView = itemView.temperature_max
+    private val windSpeed: TextView = itemView.location_wind
+    private val clouds: TextView = itemView.location_clouds
     private val date: TextView = itemView.date
 
 
     fun bind(mediaItem: DisplayableWeather) {
       imageWeather.load(mediaItem.icon)
       weatherDescription.text = mediaItem.longDescription
-      temperature.text = mediaItem.temperature
-      maxTemperature.text = mediaItem.temperature_max
-      minTemperature.text = mediaItem.temperature_min
+      maxTemperature.text = String.format(context.getString(R.string.temperature_celsius), mediaItem.temperature_max)
+      minTemperature.text = String.format(context.getString(R.string.temperature_celsius), mediaItem.temperature_min)
       date.text = mediaItem.date
+      windSpeed.text = String.format(context.getString(R.string.wind_speed), mediaItem.wind)
+
 
     }
   }

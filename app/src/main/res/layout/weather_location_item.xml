@@ -27,44 +27,38 @@
 
   <ImageView
       android:id="@+id/image_weather"
-      android:layout_width="106dp"
+      android:layout_width="80dp"
       android:layout_height="80dp"
-      android:layout_marginEnd="24dp"
+      android:layout_marginRight="16dp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintRight_toLeftOf="@id/temperature_max"
       app:layout_constraintTop_toTopOf="parent"
       />
 
   <TextView
-      android:id="@+id/location_temperature"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:textSize="30sp"
-      app:layout_constraintRight_toRightOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      />
-  <TextView
       android:id="@+id/temperature_min"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginEnd="8dp"
-      app:layout_constraintRight_toLeftOf="@id/location_temperature"
-
-      app:layout_constraintTop_toBottomOf="@id/temperature_max"
+      android:textSize="18sp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/temperature_max"
       />
   <TextView
       android:id="@+id/temperature_max"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginEnd="8dp"
-      app:layout_constraintRight_toLeftOf="@id/location_temperature"
+      android:textSize="18sp"
+      app:layout_constraintBottom_toTopOf="@+id/temperature_min"
+      app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_chainStyle="spread"
       />
   <TextView
       android:id="@+id/location_wind"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      app:layout_constraintStart_toEndOf="@id/location_temperature"
+      app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintTop_toBottomOf="@id/weather_description"
       />
   <TextView
@@ -75,9 +69,4 @@
       app:layout_constraintTop_toBottomOf="@id/weather_description"
       />
 
-
-  <!--Barcelona, ES  few clouds
-  11.7°С temperature from 8.3 to 14.4 °С, wind 1.26 m/s. clouds 20 %, 1011 hpa
-
-  Geo coords [41.3829, 2.1774]-->
 </androidx.constraintlayout.widget.ConstraintLayout>

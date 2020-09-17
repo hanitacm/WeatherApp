@@ -27,5 +27,6 @@
   <string name="error_no_location_available">Please, enable Google Service to access the current location</string>
   <string name="error_generic">Something was wrong</string>
   <string name="btn_7forecast">7-day forecast >></string>
+  <string name="wind_speed">Wind speed: %1$s</string>
 
 </resources>
